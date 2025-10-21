@@ -380,8 +380,7 @@ namespace BruteGamingMacros.UI.Forms
             this.btnResMac1.TabIndex = 210;
             this.btnResMac1.Text = "Reset";
             this.btnResMac1.UseVisualStyleBackColor = false;
-            this.btnResMac1.Click += new System.EventHandler(this.btnResMac1_Click);
-            // 
+            //
             // in6mac1
             // 
             this.in6mac1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1026,8 +1025,7 @@ namespace BruteGamingMacros.UI.Forms
             this.btnResMac3.TabIndex = 208;
             this.btnResMac3.Text = "Reset";
             this.btnResMac3.UseVisualStyleBackColor = false;
-            this.btnResMac3.Click += new System.EventHandler(this.btnResMac3_Click);
-            // 
+            //
             // inTriggerMacro3
             // 
             this.inTriggerMacro3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;

@@ -91,8 +91,7 @@ namespace BruteGamingMacros.UI.Forms
             this.label2.Size = new System.Drawing.Size(125, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Autobuff skill order";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
-            // 
+            //
             // groupSettings
             // 
             this.groupSettings.Controls.Add(this.label4);
