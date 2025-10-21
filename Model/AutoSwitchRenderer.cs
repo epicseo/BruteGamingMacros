@@ -242,7 +242,7 @@ namespace BruteGamingMacros.Core.Model
             var config =  ProfileSingleton.GetCurrent().AutoSwitch.autoSwitchGenericMapping.FirstOrDefault(x => (int)x.skillId == skillID);
             ProfileSingleton.GetCurrent().AutoSwitch.autoSwitchGenericMapping.Remove(config);
             ProfileSingleton.SetConfiguration(ProfileSingleton.GetCurrent().AutoSwitch);
-            this._subject.Notify(new Message(MessageCode.CHANGED_AUTOSWITCH_SKILL, ProfileSingleton.GetCurrent().AutoSwitch.autoSwitchGenericMapping));
+            this._subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.CHANGED_AUTOSWITCH_SKILL, ProfileSingleton.GetCurrent().AutoSwitch.autoSwitchGenericMapping));
         }
 
         public static void doUpdate(Dictionary<EffectStatusIDs, Key> autobuffDict, Control control)
