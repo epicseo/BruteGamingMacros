@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/image/logos/applogo.png" alt="Brute Gaming Macros" width="256">
+  <img src="assets/image/logos/XX" alt="Brute Gaming Macros" width="256">
 </p>
 
 # Brute Gaming Macros v2.0.0
