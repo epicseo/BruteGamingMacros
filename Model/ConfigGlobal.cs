@@ -11,7 +11,7 @@ namespace BruteGamingMacros.Core.Model
         public string LastUsedProfile { get; set; } = "Default"; // Default to "Default" profile
     }
 
-    internal class ConfigGlobal
+    public class ConfigGlobal
     {
         private static readonly string ConfigFile = AppConfig.ConfigFile;
         private static Config config;

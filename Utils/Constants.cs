@@ -1,6 +1,6 @@
 ﻿namespace BruteGamingMacros.Core.Utils
 {
-    internal class Constants
+    public class Constants
     {
         public const int WM_HOTKEY_MSG_ID = 0x0312;
         public const int WM_KEYUP_MSG_ID = 0x0101;

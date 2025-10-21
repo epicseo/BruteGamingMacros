@@ -7,7 +7,7 @@ namespace BruteGamingMacros.Core.Utils
     /// <summary>
     /// MEMORY MANAGEMENT: Implements IDisposable for proper handle cleanup
     /// </summary>
-    internal class ProcessMemoryReader : IDisposable
+    public class ProcessMemoryReader : IDisposable
     {
         private class MemoryApi
         {
