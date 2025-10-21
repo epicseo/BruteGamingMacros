@@ -28,7 +28,24 @@ namespace BruteGamingMacros.Core.Model
         {
             try
             {
-                string json = File.ReadAllText(AppConfig.ProfileFolder + profileName + ".json");
+                // Sanitize profile name to prevent path traversal
+                string sanitizedName = ProfileValidator.SanitizeProfileName(profileName);
+                string profilePath = AppConfig.ProfileFolder + sanitizedName + ".json";
+
+                // Validate file exists and is safe to load
+                if (!ProfileValidator.ValidateProfileFile(profilePath))
+                {
+                    throw new Exception($"Profile validation failed for: {sanitizedName}");
+                }
+
+                string json = File.ReadAllText(profilePath);
+
+                // Additional JSON validation
+                if (!ProfileValidator.ValidateProfileJson(json))
+                {
+                    throw new Exception($"Invalid profile JSON for: {sanitizedName}");
+                }
+
                 dynamic rawObject = JsonConvert.DeserializeObject(json);
 
                 // Migrate old "Custom" key to "TransferHelper"

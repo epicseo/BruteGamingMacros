@@ -1,0 +1,66 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop, claude/* ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    name: Build All Configurations
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        configuration: [Release, Release-MR, Release-HR, Release-LR]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore BruteGamingMacros.sln
+
+    - name: Build solution (${{ matrix.configuration }})
+      run: msbuild BruteGamingMacros.sln /p:Configuration=${{ matrix.configuration }} /p:Platform="Any CPU" /t:Rebuild /v:minimal
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: BruteGamingMacros-${{ matrix.configuration }}
+        path: bin/${{ matrix.configuration }}/BruteGamingMacros.exe
+        if-no-files-found: error
+        retention-days: 7
+
+    - name: Test executable exists
+      run: |
+        if (!(Test-Path "bin/${{ matrix.configuration }}/BruteGamingMacros.exe")) {
+          Write-Error "Build failed - executable not found"
+          exit 1
+        }
+        Write-Output "✓ Build successful - executable created"
+      shell: pwsh
+
+  build-summary:
+    name: Build Summary
+    runs-on: windows-latest
+    needs: build
+    if: always()
+
+    steps:
+    - name: Report build status
+      run: |
+        if ("${{ needs.build.result }}" -eq "success") {
+          Write-Output "✓ All build configurations succeeded"
+        } else {
+          Write-Error "✗ Some builds failed"
+          exit 1
+        }
+      shell: pwsh
