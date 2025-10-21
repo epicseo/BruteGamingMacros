@@ -341,7 +341,7 @@ namespace BruteGamingMacros.UI.Forms
                         DebugLogger.UpdateDebugMode(newValue);
 
                         DebugLogger.Info($"DebugMode changed to {newValue}. Initiating application restart...");
-                        _subject.Notify(new Message(MessageCode.DEBUG_MODE_CHANGED, newValue));
+                        _subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.DEBUG_MODE_CHANGED, newValue));
                         DebugLogger.Info("Attempting Application.Restart()...");
                         Application.Restart();
                         Environment.Exit(0);
