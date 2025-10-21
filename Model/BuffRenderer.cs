@@ -116,7 +116,7 @@ namespace BruteGamingMacros.Core.Model
                         var _autoBuffSkill = ProfileSingleton.GetCurrent().AutobuffSkill;
                         _autoBuffSkill.AddKeyToBuff(statusID, key);
                         ProfileSingleton.SetConfiguration(_autoBuffSkill);
-                        _subject.Notify(new Message(MessageCode.ADDED_NEW_AUTOBUFF_SKILL, _autoBuffSkill));
+                        _subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.ADDED_NEW_AUTOBUFF_SKILL, _autoBuffSkill));
                     }
                     else
                     {
