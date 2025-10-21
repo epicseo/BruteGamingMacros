@@ -108,7 +108,7 @@ namespace BruteGamingMacros.UI.Forms
             catch (Exception ex)
             {
                 // Log error if controls not found
-                DebugLogger.Error(ex, $"Error initializing SkillTimer panel {id}");
+                Console.WriteLine($"Error initializing SkillTimer panel {id}: {ex.Message}");
             }
         }
 

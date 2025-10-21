@@ -788,7 +788,7 @@ namespace BruteGamingMacros.UI.Forms
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
-            //
+            // 
             // pbUpAndDownArrow
             // 
             this.pbUpAndDownArrow.Image = global::BruteGamingMacros.Resources.BruteGaming.Icons.up_and_down_arrow;

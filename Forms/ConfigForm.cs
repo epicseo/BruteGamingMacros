@@ -109,9 +109,8 @@ namespace BruteGamingMacros.UI.Forms
                 this.chkDebugMode.CheckedChanged += chkDebugMode_CheckedChanged; // Reattach DebugMode handler
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                DebugLogger.Error(ex, "Error updating UI in ConfigForm");
             }
         }
 
@@ -147,7 +146,7 @@ namespace BruteGamingMacros.UI.Forms
             catch (Exception ex)
             {
                 // Log error during buff reordering
-                DebugLogger.Error(ex, "Error reordering buffs in ConfigForm");
+                Console.WriteLine($"Error reordering buffs in ConfigForm: {ex.Message}");
             }
         }
         private void SkillsListBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -208,7 +207,7 @@ namespace BruteGamingMacros.UI.Forms
                 // Silently ignore invalid key input during typing
                 if (!(ex is ArgumentException || ex is FormatException))
                 {
-                    DebugLogger.Error(ex, "Error in Ammo1 key parsing");
+                    Console.WriteLine($"Error in Ammo1 key parsing: {ex.Message}");
                 }
             }
         }
@@ -230,7 +229,7 @@ namespace BruteGamingMacros.UI.Forms
                 // Silently ignore invalid key input during typing
                 if (!(ex is ArgumentException || ex is FormatException))
                 {
-                    DebugLogger.Error(ex, "Error in Ammo2 key parsing");
+                    Console.WriteLine($"Error in Ammo2 key parsing: {ex.Message}");
                 }
             }
         }
@@ -252,9 +251,14 @@ namespace BruteGamingMacros.UI.Forms
                 // Silently ignore invalid key input during typing
                 if (!(ex is ArgumentException || ex is FormatException))
                 {
-                    DebugLogger.Error(ex, "Error in AmmoTrigger key parsing");
+                    Console.WriteLine($"Error in AmmoTrigger key parsing: {ex.Message}");
                 }
             }
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void OverweightKey_TextChanged(object sender, EventArgs e)
@@ -274,7 +278,7 @@ namespace BruteGamingMacros.UI.Forms
                 // Silently ignore invalid key input during typing
                 if (!(ex is ArgumentException || ex is FormatException))
                 {
-                    DebugLogger.Error(ex, "Error in OverweightKey parsing");
+                    Console.WriteLine($"Error in OverweightKey parsing: {ex.Message}");
                 }
             }
         }
@@ -383,11 +387,6 @@ namespace BruteGamingMacros.UI.Forms
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
-        }
-
-        private void Label2_Click(object sender, EventArgs e)
         {
 
         }

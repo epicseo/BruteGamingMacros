@@ -96,7 +96,7 @@ namespace BruteGamingMacros.UI.Forms
                 // Silently ignore conversion errors during typing
                 if (!(ex is FormatException || ex is OverflowException))
                 {
-                    DebugLogger.Error(ex, "Error in AutobuffSkillForm delay change");
+                    Console.WriteLine($"Error in AutobuffSkillForm delay change: {ex.Message}");
                 }
             }
         }

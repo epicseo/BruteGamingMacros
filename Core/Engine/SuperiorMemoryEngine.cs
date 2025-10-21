@@ -247,7 +247,7 @@ namespace BruteGamingMacros.Core.Engine
             }
             catch (Exception ex)
             {
-                DebugLogger.Error(ex, "SuperiorMemoryEngine.BatchReadUInt32 error");
+                Console.WriteLine($"SuperiorMemoryEngine.BatchReadUInt32 error: {ex.Message}");
                 result.FailureCount = addresses.Length - result.SuccessCount;
             }
 
@@ -333,7 +333,7 @@ namespace BruteGamingMacros.Core.Engine
             }
             catch (Exception ex)
             {
-                DebugLogger.Error(ex, "SuperiorMemoryEngine.ReadCharacterStats error");
+                Console.WriteLine($"SuperiorMemoryEngine.ReadCharacterStats error: {ex.Message}");
             }
 
             return stats;
@@ -407,7 +407,7 @@ namespace BruteGamingMacros.Core.Engine
             }
             catch (Exception ex)
             {
-                DebugLogger.Error(ex, "SuperiorMemoryEngine.ReadAllBuffStatuses error");
+                Console.WriteLine($"SuperiorMemoryEngine.ReadAllBuffStatuses error: {ex.Message}");
             }
 
             return result;

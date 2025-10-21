@@ -58,7 +58,7 @@
             this.label1.Text = "Transfer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label1.Click += new System.EventHandler(this.Label1_Click);
-            //
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Help;
@@ -70,7 +70,7 @@
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.PictureBox2_Click);
-            //
+            // 
             // TransferButtonForm
             // 
             this.BackColor = System.Drawing.Color.White;

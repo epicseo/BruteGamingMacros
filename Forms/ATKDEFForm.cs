@@ -95,7 +95,7 @@ namespace BruteGamingMacros.UI.Forms
             }
             catch (Exception ex)
             {
-                DebugLogger.Error(ex, "Error in UpdatePanelData for ID " + id);
+                Console.WriteLine("Error in UpdatePanelData for ID " + id + ": " + ex.Message);
             }
         }
 
@@ -223,7 +223,7 @@ namespace BruteGamingMacros.UI.Forms
             }
             catch (Exception ex)
             {
-                DebugLogger.Error(ex, "Error in SetupInputs");
+                Console.WriteLine("Error in SetupInputs: " + ex.Message);
             }
         }
 
@@ -259,7 +259,7 @@ namespace BruteGamingMacros.UI.Forms
             int groupIndex = currentAtkDefMode.EquipConfigs.FindIndex(ec => ec.id == configIdToReset);
             if (groupIndex == -1)
             {
-                DebugLogger.Warning("Config ID " + configIdToReset + " not found for reset.");
+                Console.WriteLine("Config ID " + configIdToReset + " not found for reset.");
                 EquipConfig newDefaultConfig = new EquipConfig(configIdToReset);
                 currentAtkDefMode.EquipConfigs.Add(newDefaultConfig); // Add if missing
                                                                       // Find index again after adding, though UpdatePanelData might create it too.

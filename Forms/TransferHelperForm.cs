@@ -61,7 +61,7 @@ namespace BruteGamingMacros.UI.Forms
                 // Silently ignore invalid key input - this is expected during user typing
                 if (!(ex is ArgumentException || ex is FormatException))
                 {
-                    DebugLogger.Error(ex, "Error in TransferHelperForm key parsing");
+                    Console.WriteLine($"Error in TransferHelperForm key parsing: {ex.Message}");
                 }
             }
             this.ActiveControl = null;
