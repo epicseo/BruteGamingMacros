@@ -260,5 +260,7 @@ namespace BruteGamingMacros.UI.Forms
             Process.Start(AppConfig.DiscordLinkHR);
         }
 
+        private void PictureBox1_Click(object sender, EventArgs e) { }
+
     }
 }

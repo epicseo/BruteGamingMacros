@@ -75,6 +75,7 @@ namespace BruteGamingMacros.UI.Forms
             this.lblStatusToggle.TabIndex = 22;
             this.lblStatusToggle.Text = "Press the key to start!";
             this.lblStatusToggle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStatusToggle.Click += new System.EventHandler(this.lblStatusToggle_Click);
             //
             // btnStatusToggle
             // 
