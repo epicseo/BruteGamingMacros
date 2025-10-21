@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using ObserverMessage = BruteGamingMacros.Core.Utils.Message;
 
 namespace BruteGamingMacros.Core.Utils
 {
@@ -47,12 +48,12 @@ namespace BruteGamingMacros.Core.Utils
 
             menuItemClose.Text = "Exit " + AppConfig.Name;
             menuItemClose.Image = Icons.menu_exit;
-            menuItemClose.Click += (s, e) => subject.Notify(new Utils.Message(MessageCode.SHUTDOWN_APPLICATION, null));
+            menuItemClose.Click += (s, e) => subject.Notify(new Message(MessageCode.SHUTDOWN_APPLICATION, null));
 
             contextMenu.Items.AddRange(new ToolStripItem[] { menuItemToggle, menuItemProfiles, menuItemClose });
             this.notifyIconTray.ContextMenuStrip = contextMenu;
 
-            this.notifyIconTray.DoubleClick += (s, e) => subject.Notify(new Utils.Message(MessageCode.CLICK_ICON_TRAY, null));
+            this.notifyIconTray.DoubleClick += (s, e) => subject.Notify(new Message(MessageCode.CLICK_ICON_TRAY, null));
 
             this.subject.Attach(this);
         }
@@ -82,11 +83,11 @@ namespace BruteGamingMacros.Core.Utils
         {
             if (isApplicationOn)
             {
-                subject.Notify(new Utils.Message(MessageCode.TURN_OFF, null));
+                subject.Notify(new Message(MessageCode.TURN_OFF, null));
             }
             else
             {
-                subject.Notify(new Utils.Message(MessageCode.TURN_ON, null));
+                subject.Notify(new Message(MessageCode.TURN_ON, null));
             }
         }
 
@@ -118,7 +119,7 @@ namespace BruteGamingMacros.Core.Utils
             };
             profileItem.Click += (s, e) =>
             {
-                subject.Notify(new Utils.Message(MessageCode.PROFILE_CHANGED, profileName));
+                subject.Notify(new Message(MessageCode.PROFILE_CHANGED, profileName));
             };
             menuItemProfiles.DropDownItems.Add(profileItem);
         }

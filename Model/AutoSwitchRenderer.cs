@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ObserverMessage = BruteGamingMacros.Core.Utils.Message;
 using System.Windows.Input;
 using static BruteGamingMacros.Core.Model.AutoSwitch;
 
@@ -241,7 +242,7 @@ namespace BruteGamingMacros.Core.Model
             var config =  ProfileSingleton.GetCurrent().AutoSwitch.autoSwitchGenericMapping.FirstOrDefault(x => (int)x.skillId == skillID);
             ProfileSingleton.GetCurrent().AutoSwitch.autoSwitchGenericMapping.Remove(config);
             ProfileSingleton.SetConfiguration(ProfileSingleton.GetCurrent().AutoSwitch);
-            this._subject.Notify(new Utils.Message(Utils.MessageCode.CHANGED_AUTOSWITCH_SKILL, ProfileSingleton.GetCurrent().AutoSwitch.autoSwitchGenericMapping));
+            this._subject.Notify(new Message(MessageCode.CHANGED_AUTOSWITCH_SKILL, ProfileSingleton.GetCurrent().AutoSwitch.autoSwitchGenericMapping));
         }
 
         public static void doUpdate(Dictionary<EffectStatusIDs, Key> autobuffDict, Control control)

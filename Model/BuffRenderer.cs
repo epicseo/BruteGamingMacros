@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Input;
+using ObserverMessage = BruteGamingMacros.Core.Utils.Message;
 
 namespace BruteGamingMacros.Core.Model
 {
@@ -115,7 +116,7 @@ namespace BruteGamingMacros.Core.Model
                         var _autoBuffSkill = ProfileSingleton.GetCurrent().AutobuffSkill;
                         _autoBuffSkill.AddKeyToBuff(statusID, key);
                         ProfileSingleton.SetConfiguration(_autoBuffSkill);
-                        _subject.Notify(new Utils.Message(Utils.MessageCode.ADDED_NEW_AUTOBUFF_SKILL, _autoBuffSkill));
+                        _subject.Notify(new Message(MessageCode.ADDED_NEW_AUTOBUFF_SKILL, _autoBuffSkill));
                     }
                     else
                     {
