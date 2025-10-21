@@ -6,7 +6,7 @@ using System.IO;
 
 namespace BruteGamingMacros.Core.Model
 {
-    internal class Server
+    public class Server
     {
         private static List<string> cityList;
 

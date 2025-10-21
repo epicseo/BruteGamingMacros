@@ -1,0 +1,223 @@
+================================================================================
+COMPREHENSIVE RESOURCE FILE ANALYSIS REPORT
+BruteGamingMacros Project
+Generated: 2025-10-21
+================================================================================
+
+EXECUTIVE SUMMARY:
+------------------
+- Total .resx files found: 18
+- .resx files referenced in .csproj: 17
+- All referenced files exist: YES
+- Missing .resx in .csproj: 1 (AutoPatcher.resx)
+- Total "4RTools" references in code: 195 occurrences across 11 files
+- "4RTools" references in .resx files: 0 (CLEAN)
+
+
+SECTION 1: EMBEDDED RESOURCE ENTRIES IN .CSPROJ
+================================================================================
+
+✓ Forms/SkillSpammerForm.resx          - EXISTS
+✓ Forms/ATKDEFForm.resx                - EXISTS
+✓ Forms/AutopotForm.resx               - EXISTS
+✓ Forms/Container.resx                 - EXISTS
+✓ Forms/MacroSongForm.resx             - EXISTS
+✓ Forms/MacroSwitchForm.resx           - EXISTS
+✓ Forms/ConfigForm.resx                - EXISTS
+✓ Forms/ProfileForm.resx               - EXISTS
+✓ Forms/AutobuffSkillForm.resx         - EXISTS
+✓ Forms/SkillTimerForm.resx            - EXISTS
+✓ Forms/AutoBuffStatusForm.resx        - EXISTS
+✓ Forms/AutobuffItemForm.resx          - EXISTS
+✓ Forms/ToggleStateForm.resx           - EXISTS
+✓ Forms/TransferHelperForm.resx        - EXISTS
+✓ Properties/Resources.resx            - EXISTS
+✓ Resources/BruteGaming/Icons.resx     - EXISTS
+✓ Resources/BruteGaming/Sounds.resx    - EXISTS
+
+TOTAL: 17 EmbeddedResource entries - ALL EXIST
+
+
+SECTION 2: MISSING RESOURCES IN .CSPROJ
+================================================================================
+
+⚠ Forms/AutoPatcher.resx               - FILE EXISTS but NOT in .csproj
+
+ISSUE: AutoPatcher.resx is present in the Forms directory but is not referenced
+as an EmbeddedResource in BruteGamingMacros.csproj. This should be added.
+
+
+SECTION 3: "4RTOOLS" REFERENCES IN .CSPROJ
+================================================================================
+
+Line 143:  <ManifestKeyFile>4RTools_TemporaryKey.pfx</ManifestKeyFile>
+           ISSUE: References old "4RTools" key file name
+
+Line 421:  <None Include="Properties\DataSources\_4RTools.Model.ClientDTO.datasource" />
+           ISSUE: References datasource file that DOES NOT EXIST
+           ACTUAL FILE: BruteGamingMacros.Core.Model.ClientDTO.datasource
+
+
+SECTION 4: "4RTOOLS" REFERENCES IN SOURCE CODE
+================================================================================
+
+File: BruteGamingMacros.csproj (2 occurrences)
+  - Line 143: ManifestKeyFile reference
+  - Line 421: Old datasource file path
+
+File: Forms/AutoPatcher.Designer.cs (1 occurrence)
+  - Line 51: UI text "Updating 4RTools..."
+    CODE: this.label1.Text = "Updating 4RTools...";
+
+File: Forms/AutopotForm.cs (2 occurrences)
+  - Line 22: _4RTools.Resources._4RTools.Icons.ygg
+  - Line 23: _4RTools.Resources._4RTools.Icons.ygg
+
+File: Forms/ConfigForm.Designer.cs (1 occurrence)
+  - Line 337: typeof(_4RTools.Model.ClientDTO)
+
+File: Forms/ConfigForm.cs (1 occurrence)
+  - Line 50: _4RTools.Model.Server.GetCitiesFile()
+
+File: Forms/ProfileForm.cs (1 occurrence)
+  - Line 91: global::_4RTools.Resources._4RTools.Icons.profile_active
+
+File: Model/AutoSwitchRenderer.cs (4 occurrences)
+  - Line 12: using static _4RTools.Model.AutoSwitch;
+  - Line 90: Resources._4RTools.ETCResource.arrowright
+  - Line 111: Resources._4RTools.ETCResource.arrowright
+  - Line 132: Resources._4RTools.ETCResource.remove
+
+File: Model/Buff.cs (179 occurrences)
+  - Lines 28-407: Extensive use of Resources._4RTools.Icons.* throughout
+  - All buff icon references use old namespace
+
+File: Properties/AssemblyInfo.cs (1 occurrence)
+  - Line 13: Copyright text mentioning "4RTools"
+    CODE: [assembly: AssemblyCopyright("Copyright © 2025 Brute Gaming | Based on 4RTools by torrq | MIT License")]
+    NOTE: This is appropriate attribution and should remain
+
+File: Properties/DataSources/BruteGamingMacros.Core.Model.ClientDTO.datasource (1 occurrence)
+  - Line 9: <TypeInfo>_4RTools.Model.ClientDTO, 4RTools, Version=1.0.0.0...</TypeInfo>
+    ISSUE: Old namespace in datasource TypeInfo
+
+File: Utils/AppConfig.cs (2 occurrences)
+  - Line 114: GithubLink = "https://github.com/epicseo/4RTools-OSRO/releases"
+  - Line 115: LatestVersionURL = "https://api.github.com/repos/epicseo/4RTools-OSRO/releases/latest"
+    ISSUE: GitHub URLs point to old repository
+
+
+SECTION 5: DESIGNER.CS FILES VERIFICATION
+================================================================================
+
+All Designer.cs files checked:
+✓ ATKDEFForm.Designer.cs              - Has corresponding .resx
+✓ AutoBuffStatusForm.Designer.cs      - Has corresponding .resx
+✓ AutobuffItemForm.Designer.cs        - Has corresponding .resx
+✓ AutoPatcher.Designer.cs             - Has corresponding .resx (NOT in .csproj)
+✓ ConfigForm.Designer.cs              - Has corresponding .resx
+✓ AutopotForm.Designer.cs             - Has corresponding .resx
+✓ AutobuffSkillForm.Designer.cs       - Has corresponding .resx
+✓ Container.Designer.cs               - Has corresponding .resx
+✓ MacroSwitchForm.Designer.cs         - Has corresponding .resx
+✓ MacroSongForm.Designer.cs           - Has corresponding .resx
+✓ ProfileForm.Designer.cs             - Has corresponding .resx
+✓ ToggleStateForm.Designer.cs         - Has corresponding .resx
+✓ SkillTimerForm.Designer.cs          - Has corresponding .resx
+✓ SkillSpammerForm.Designer.cs        - Has corresponding .resx
+✓ TransferHelperForm.Designer.cs      - Has corresponding .resx
+✓ Resources.Designer.cs               - Has corresponding .resx
+✓ Icons.Designer.cs                   - Has corresponding .resx
+✓ Sounds.Designer.cs                  - Has corresponding .resx
+
+
+SECTION 6: .RESX FILES NAMESPACE VERIFICATION
+================================================================================
+
+✓ NO "4RTools" or "_4RTools" references found in ANY .resx files
+✓ All .resx files are clean
+
+
+SECTION 7: PATH MISMATCH ISSUES
+================================================================================
+
+1. DATASOURCE FILE MISMATCH:
+   .csproj references: Properties\DataSources\_4RTools.Model.ClientDTO.datasource
+   Actual file exists: Properties/DataSources/BruteGamingMacros.Core.Model.ClientDTO.datasource
+   STATUS: Referenced file DOES NOT EXIST
+
+2. MISSING EMBEDDEDRESOURCE:
+   File exists: Forms/AutoPatcher.resx
+   .csproj entry: MISSING
+   STATUS: Should be added to .csproj
+
+
+SECTION 8: CRITICAL ISSUES SUMMARY
+================================================================================
+
+HIGH PRIORITY:
+--------------
+1. Add AutoPatcher.resx to .csproj as EmbeddedResource
+2. Update datasource reference in .csproj (line 421)
+3. Fix datasource TypeInfo namespace (BruteGamingMacros.Core.Model.ClientDTO.datasource)
+4. Update Buff.cs - 179 "Resources._4RTools" namespace references
+5. Update GitHub URLs in AppConfig.cs
+
+MEDIUM PRIORITY:
+----------------
+6. Fix ConfigForm.Designer.cs - typeof(_4RTools.Model.ClientDTO)
+7. Fix AutopotForm.cs - resource namespace references
+8. Fix ProfileForm.cs - resource namespace reference
+9. Fix AutoSwitchRenderer.cs - resource namespace references
+10. Fix ConfigForm.cs - Model.Server reference
+11. Update AutoPatcher.Designer.cs UI text
+
+LOW PRIORITY:
+-------------
+12. Update ManifestKeyFile name (if file exists)
+
+DOCUMENTATION ONLY (Keep as attribution):
+------------------------------------------
+13. AssemblyInfo.cs copyright text - KEEP AS IS (proper attribution)
+
+
+SECTION 9: RECOMMENDED ACTIONS
+================================================================================
+
+1. Update .csproj:
+   - Add: <EmbeddedResource Include="Forms\AutoPatcher.resx">
+   - Fix line 421: Change to BruteGamingMacros.Core.Model.ClientDTO.datasource
+   - Consider updating line 143 ManifestKeyFile
+
+2. Update datasource file:
+   File: Properties/DataSources/BruteGamingMacros.Core.Model.ClientDTO.datasource
+   Change: _4RTools.Model.ClientDTO, 4RTools
+   To: BruteGamingMacros.Core.Model.ClientDTO, BruteGamingMacros
+
+3. Global namespace replacement needed in:
+   - Model/Buff.cs (179 occurrences)
+   - Forms/AutopotForm.cs
+   - Forms/ProfileForm.cs
+   - Model/AutoSwitchRenderer.cs
+   Replace: Resources._4RTools or global::_4RTools.Resources._4RTools
+   With: BruteGamingMacros.Resources.BruteGaming
+
+4. Update type references:
+   - Forms/ConfigForm.Designer.cs: typeof(_4RTools.Model.ClientDTO)
+   - Forms/ConfigForm.cs: _4RTools.Model.Server
+   Replace: _4RTools.Model
+   With: BruteGamingMacros.Core.Model
+
+5. Update URLs:
+   File: Utils/AppConfig.cs
+   Update GitHub repository URLs to current repo
+
+6. Update UI text:
+   File: Forms/AutoPatcher.Designer.cs
+   Change: "Updating 4RTools..."
+   To: "Updating BruteGaming Macros..."
+
+
+================================================================================
+END OF REPORT
+================================================================================

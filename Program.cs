@@ -1,4 +1,5 @@
 ﻿using BruteGamingMacros.Core.Utils;
+using BruteGamingMacros.UI.Forms;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace BruteGamingMacros.Core
 
             try
             {
-                using (Forms.Container app = new Forms.Container())
+                using (Container app = new Container())
                 {
                     Application.Run(app);
                 }

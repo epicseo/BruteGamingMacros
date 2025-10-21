@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using ObserverMessage = BruteGamingMacros.Core.Utils.Message;
 
 namespace BruteGamingMacros.UI.Forms
 {
@@ -378,7 +379,7 @@ namespace BruteGamingMacros.UI.Forms
 
             characterName.Text = client.ReadCharacterName() ?? "- -";
             characterMap.Text = client.ReadCurrentMap() ?? "- -";
-            subject.Notify(new Utils.Message(Utils.MessageCode.PROCESS_CHANGED, null));
+            subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.PROCESS_CHANGED, null));
         }
 
         private void Container_Load(object sender, EventArgs e)
@@ -519,7 +520,7 @@ namespace BruteGamingMacros.UI.Forms
 
                 KeyboardHook.Disable();
 
-                subject.Notify(new Utils.Message(MessageCode.TURN_OFF, null));
+                subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.TURN_OFF, null));
 
                 UnsubscribeFromDebugLogger();
 
@@ -575,7 +576,7 @@ namespace BruteGamingMacros.UI.Forms
                     }
                     ProfileSingleton.ClearProfile(profileName);
                     ProfileSingleton.Load(profileName);
-                    subject.Notify(new Utils.Message(MessageCode.PROFILE_CHANGED, null));
+                    subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.PROFILE_CHANGED, null));
                     currentProfile = profileName;
                     profileCB.SelectedItem = profileName;
 

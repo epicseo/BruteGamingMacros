@@ -5,6 +5,7 @@ using System;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
+using ObserverMessage = BruteGamingMacros.Core.Utils.Message;
 
 namespace BruteGamingMacros.UI.Forms
 {
@@ -156,7 +157,7 @@ namespace BruteGamingMacros.UI.Forms
                 SetVisualState(isApplicationOn);
                 trayManager.UpdateIcon(isApplicationOn);
 
-                this.subject.Notify(new Utils.Message(MessageCode.TURN_OFF, null));
+                this.subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.TURN_OFF, null));
 
                 this.lblStatusToggle.Text = "Press the key to start!";
                 this.lblStatusToggle.ForeColor = Color.FromArgb(148, 155, 164);
@@ -175,7 +176,7 @@ namespace BruteGamingMacros.UI.Forms
                     SetVisualState(isApplicationOn);
                     trayManager.UpdateIcon(isApplicationOn);
 
-                    this.subject.Notify(new Utils.Message(MessageCode.TURN_ON, null));
+                    this.subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.TURN_ON, null));
 
                     this.lblStatusToggle.Text = "Press the key to stop!";
                     this.lblStatusToggle.ForeColor = Color.FromArgb(120, 120, 120);
@@ -209,7 +210,7 @@ namespace BruteGamingMacros.UI.Forms
                 SetVisualState(isApplicationOn);
                 trayManager.UpdateIcon(isApplicationOn);
 
-                this.subject.Notify(new Utils.Message(MessageCode.TURN_OFF, null));
+                this.subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.TURN_OFF, null));
                 this.lblStatusToggle.Text = "Press the key to start!";
                 this.lblStatusToggle.ForeColor = Color.FromArgb(148, 155, 164);
 

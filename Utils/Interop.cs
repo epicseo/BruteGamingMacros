@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace BruteGamingMacros.Core.Utils
 {
-    internal class Interop
+    public class Interop
     {
         // PINVOKES
         [DllImport("user32.dll", SetLastError = true)]

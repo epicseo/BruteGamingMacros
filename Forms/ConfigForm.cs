@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
+using ObserverMessage = BruteGamingMacros.Core.Utils.Message;
 
 namespace BruteGamingMacros.UI.Forms
 {
@@ -47,7 +48,7 @@ namespace BruteGamingMacros.UI.Forms
             this.skillsListBox.DragOver += this.SkillsListBox_DragOver;
             this.skillsListBox.DragDrop += this.SkillsListBox_DragDrop;
 
-            string cityName = _4RTools.Model.Server.GetCitiesFile();
+            string cityName = BruteGamingMacros.Core.Model.Server.GetCitiesFile();
 
             toolTipchkStopBuffsOnCity.SetToolTip(chkStopBuffsOnCity, "Pause when in a city (cities defined in " + cityName + ")");
 
@@ -341,7 +342,7 @@ namespace BruteGamingMacros.UI.Forms
                         DebugLogger.UpdateDebugMode(newValue);
 
                         DebugLogger.Info($"DebugMode changed to {newValue}. Initiating application restart...");
-                        _subject.Notify(new Utils.Message(MessageCode.DEBUG_MODE_CHANGED, newValue));
+                        _subject.Notify(new BruteGamingMacros.Core.Utils.Message(MessageCode.DEBUG_MODE_CHANGED, newValue));
                         DebugLogger.Info("Attempting Application.Restart()...");
                         Application.Restart();
                         Environment.Exit(0);

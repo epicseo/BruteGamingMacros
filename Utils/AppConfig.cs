@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace BruteGamingMacros.Core.Utils
 {
-    internal class AppConfig
+    public class AppConfig
     {
         // === BRUTE GAMING MACROS v2.0.0 ===
         public static string Name = "Brute Gaming Macros";

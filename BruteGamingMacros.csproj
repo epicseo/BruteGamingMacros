@@ -370,12 +370,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\4RTools\Sounds.Designer.cs">
+    <Compile Include="Resources\BruteGaming\Sounds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Sounds.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\4RTools\Icons.Designer.cs">
+    <Compile Include="Resources\BruteGaming\Icons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Icons.resx</DependentUpon>
@@ -390,6 +390,7 @@
     <Compile Include="Utils\KeyboardHook.cs" />
     <Compile Include="Utils\NotificationTrayManager.cs" />
     <Compile Include="Utils\ProcessMemoryReader.cs" />
+    <Compile Include="Utils\ProfileValidator.cs" />
     <Compile Include="Utils\RObserver.cs" />
     <Compile Include="Utils\StatusIdLogger.cs" />
     <Compile Include="Utils\StatusUtils.cs" />
@@ -406,12 +407,12 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\4RTools\Icons.resx">
+    <EmbeddedResource Include="Resources\BruteGaming\Icons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Icons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\4RTools\Sounds.resx">
+    <EmbeddedResource Include="Resources\BruteGaming\Sounds.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Sounds.Designer.cs</LastGenOutput>

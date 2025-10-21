@@ -3,6 +3,7 @@ using BruteGamingMacros.Core.Utils;
 using System;
 using System.Windows.Forms;
 using System.Windows.Input;
+using ObserverMessage = BruteGamingMacros.Core.Utils.Message;
 
 namespace BruteGamingMacros.UI.Forms
 {
@@ -19,8 +20,8 @@ namespace BruteGamingMacros.UI.Forms
 
             if (isYgg)
             {
-                this.picBoxHP.Image = _4RTools.Resources._4RTools.Icons.ygg;
-                this.picBoxSP.Image = _4RTools.Resources._4RTools.Icons.ygg;
+                this.picBoxHP.Image = BruteGamingMacros.Resources.BruteGaming.Icons.ygg;
+                this.picBoxSP.Image = BruteGamingMacros.Resources.BruteGaming.Icons.ygg;
                 this.chkStopOnCriticalInjury.Hide();
             }
             subject.Attach(this);
