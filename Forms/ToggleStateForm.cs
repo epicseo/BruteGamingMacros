@@ -5,6 +5,7 @@ using System;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
+using ObserverMessage = BruteGamingMacros.Core.Utils.Message;
 
 namespace BruteGamingMacros.UI.Forms
 {
