@@ -93,7 +93,7 @@ namespace BruteGamingMacros.Core.Model
                 // Only log if it's not a parsing error
                 if (!(ex is ArgumentException || ex is FormatException))
                 {
-                    Console.WriteLine($"Error in DebuffRenderer.OnTextChange: {ex.Message}");
+                    DebugLogger.Error(ex, "Error in DebuffRenderer.OnTextChange");
                 }
             }
         }

@@ -235,8 +235,6 @@ namespace BruteGamingMacros.UI.Forms
 
         private void ChkL_CheckedChanged(object sender, EventArgs e) { }
 
-        private void PictureBox1_Click(object sender, EventArgs e) { }
-
         private void MRWebsiteButton_Click(object sender, EventArgs e)
         {
             Process.Start(AppConfig.WebsiteMR);

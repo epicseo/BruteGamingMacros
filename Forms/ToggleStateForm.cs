@@ -239,9 +239,5 @@ namespace BruteGamingMacros.UI.Forms
                 this.toolTipStatusToggle.SetToolTip(this.btnStatusToggle, "Click or press hotkey to turn ON");
             }
         }
-
-        private void lblStatusToggle_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

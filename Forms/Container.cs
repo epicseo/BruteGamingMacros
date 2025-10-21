@@ -692,7 +692,7 @@ namespace BruteGamingMacros.UI.Forms
                 catch (Exception ex)
                 {
                     // Log error loading client but continue with others
-                    Console.WriteLine($"Error loading client '{clientDTO.Name}': {ex.Message}");
+                    DebugLogger.Error(ex, $"Error loading client '{clientDTO.Name}'");
                 }
             }
         }

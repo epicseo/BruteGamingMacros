@@ -624,17 +624,7 @@ namespace BruteGamingMacros.UI.Forms
 
         }
 
-        private void btnResMac3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void panelMacro2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnResMac1_Click(object sender, EventArgs e)
         {
 
         }

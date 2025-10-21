@@ -248,7 +248,7 @@ namespace BruteGamingMacros.Core.Engine
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"SuperiorInputEngine.SendKeyPress error: {ex.Message}");
+                DebugLogger.Error(ex, "SuperiorInputEngine.SendKeyPress error");
                 return false;
             }
         }
