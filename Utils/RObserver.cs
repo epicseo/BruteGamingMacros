@@ -9,13 +9,13 @@ namespace BruteGamingMacros.Core.Utils
 
     public interface ISubject
     {
-        Message Message { get; }
+        BruteGamingMacros.Core.Utils.Message Message { get; }
 
         void Attach(IObserver observer);
 
         void Detach(IObserver observer);
 
-        void Notify(Message message);
+        void Notify(BruteGamingMacros.Core.Utils.Message message);
     }
 
     public enum MessageCode
@@ -51,7 +51,7 @@ namespace BruteGamingMacros.Core.Utils
 
     public class Subject : ISubject
     {
-        public Message Message { get; set; } = new Message();
+        public BruteGamingMacros.Core.Utils.Message Message { get; set; } = new BruteGamingMacros.Core.Utils.Message();
         private readonly List<IObserver> _observers = new List<IObserver>();
 
         public void Attach(IObserver observer)
@@ -74,7 +74,7 @@ namespace BruteGamingMacros.Core.Utils
             DebugLogger.Debug("Subject: Detached an observer.");
         }
 
-        public void Notify(Message message)
+        public void Notify(BruteGamingMacros.Core.Utils.Message message)
         {
             //DebugLogger.Debug("Subject: Notifying observers...");
             this.Message = message;
