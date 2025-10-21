@@ -1,0 +1,807 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A7D78B00-6CE1-4B4D-90A3-1D2E93C7F68A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BruteGamingMacros.Core</RootNamespace>
+    <AssemblyName>BruteGamingMacros</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PreferNativeArm64>false</PreferNativeArm64>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-HR|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug-HR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;HR_BUILD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-HR|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release-HR\</OutputPath>
+    <DefineConstants>TRACE;HR_BUILD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PreferNativeArm64>false</PreferNativeArm64>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-LR|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug-LR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LR_BUILD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-LR|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release-LR\</OutputPath>
+    <DefineConstants>TRACE;LR_BUILD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PreferNativeArm64>false</PreferNativeArm64>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-MR|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug-MR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;MR_BUILD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-MR|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release-MR\</OutputPath>
+    <DefineConstants>TRACE;MR_BUILD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PreferNativeArm64>false</PreferNativeArm64>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>applogo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>D23C52749664C893CEAA696749FDA24E4E4F528C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>4RTools_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\SkillSpammerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SkillSpammerForm.Designer.cs">
+      <DependentUpon>SkillSpammerForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\ATKDEFForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Forms\SkillSpammerForm.resx">
+      <DependentUpon>SkillSpammerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Forms\ATKDEFForm.Designer.cs">
+      <DependentUpon>ATKDEFForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <EmbeddedResource Include="Forms\ATKDEFForm.resx">
+      <DependentUpon>ATKDEFForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutopotForm.resx">
+      <DependentUpon>AutopotForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Forms\DebugLogWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DebugLogWindow.Designer.cs">
+      <DependentUpon>DebugLogWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DialogConfirm.Designer.cs">
+      <DependentUpon>DialogConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogConfirmDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DialogConfirmDelete.Designer.cs">
+      <DependentUpon>DialogConfirmDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DialogInput.Designer.cs">
+      <DependentUpon>DialogInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MacroSongForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Forms\Container.resx">
+      <DependentUpon>Container.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Forms\MacroSongForm.Designer.cs">
+      <DependentUpon>MacroSongForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\MacroSwitchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Forms\MacroSongForm.resx">
+      <DependentUpon>MacroSongForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Forms\MacroSwitchForm.Designer.cs">
+      <DependentUpon>MacroSwitchForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <EmbeddedResource Include="Forms\MacroSwitchForm.resx">
+      <DependentUpon>MacroSwitchForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Forms\AutobuffSkillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutobuffSkillForm.Designer.cs">
+      <DependentUpon>AutobuffSkillForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\SkillTimerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Forms\AutobuffSkillForm.resx">
+      <DependentUpon>AutobuffSkillForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Forms\SkillTimerForm.Designer.cs">
+      <DependentUpon>SkillTimerForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\AutoBuffStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoBuffStatusForm.Designer.cs">
+      <DependentUpon>AutoBuffStatusForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\AutobuffItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Forms\SkillTimerForm.resx">
+      <DependentUpon>SkillTimerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Forms\AutobuffItemForm.Designer.cs">
+      <DependentUpon>AutobuffItemForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\Container.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Container.Designer.cs">
+      <DependentUpon>Container.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\ToggleStateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Forms\AutoBuffStatusForm.resx">
+      <DependentUpon>AutoBuffStatusForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutobuffItemForm.resx">
+      <DependentUpon>AutobuffItemForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Forms\ToggleStateForm.Designer.cs">
+      <DependentUpon>ToggleStateForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Forms\TransferHelperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TransferHelperForm.Designer.cs">
+      <DependentUpon>TransferHelperForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SkillSpammer.cs" />
+    <Compile Include="Model\ATKDEF.cs" />
+    <Compile Include="Model\AutobuffSkill.cs" />
+    <Compile Include="Model\Autopot.cs" />
+    <Compile Include="Model\AutobuffItem.cs" />
+    <Compile Include="Model\SkillTimer.cs" />
+    <Compile Include="Model\Buff.cs" />
+    <Compile Include="Model\BuffContainer.cs" />
+    <Compile Include="Model\ConfigGlobal.cs" />
+    <Compile Include="Model\DebuffRenderer.cs" />
+    <Compile Include="Model\BuffRenderer.cs" />
+    <Compile Include="Model\TransferHelper.cs" />
+    <Compile Include="Model\DebuffRecovery.cs" />
+    <Compile Include="Model\Server.cs" />
+    <Compile Include="Model\StatusRecovery.cs" />
+    <Compile Include="Model\ConfigProfile.cs" />
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\Action.cs" />
+    <Compile Include="Model\Macro.cs" />
+    <Compile Include="Model\Profile.cs" />
+    <Compile Include="Core\Engine\SuperiorInputEngine.cs" />
+    <Compile Include="Core\Engine\SuperiorSkillSpammer.cs" />
+    <Compile Include="Core\Engine\SuperiorMemoryEngine.cs" />
+    <Compile Include="Forms\AutopotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutopotForm.Designer.cs">
+      <DependentUpon>AutopotForm.cs</DependentUpon>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\4RTools\Sounds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sounds.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\4RTools\Icons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Icons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\AmmoSwapHandler.cs" />
+    <Compile Include="Utils\DebugLogger.cs" />
+    <Compile Include="Utils\EffectStatusIDs.cs" />
+    <Compile Include="Utils\AppConfig.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\FormUtils.cs" />
+    <Compile Include="Utils\Interop.cs" />
+    <Compile Include="Utils\KeyboardHook.cs" />
+    <Compile Include="Utils\NotificationTrayManager.cs" />
+    <Compile Include="Utils\ProcessMemoryReader.cs" />
+    <Compile Include="Utils\RObserver.cs" />
+    <Compile Include="Utils\StatusIdLogger.cs" />
+    <Compile Include="Utils\StatusUtils.cs" />
+    <Compile Include="Utils\ThreadRunner.cs" />
+    <EmbeddedResource Include="Forms\ToggleStateForm.resx">
+      <DependentUpon>ToggleStateForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TransferHelperForm.resx">
+      <DependentUpon>TransferHelperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\4RTools\Icons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\4RTools\Sounds.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Sounds.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="assets\image\logos\applogo.psd" />
+    <None Include="Properties\DataSources\_4RTools.Model.ClientDTO.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="applogo.ico" />
+    <Content Include="assets\image\icon\atkdef\armor_body.png" />
+    <Content Include="assets\image\icon\atkdef\armor_head.png" />
+    <Content Include="assets\image\icon\atkdef\armor_robe.png" />
+    <Content Include="assets\image\icon\atkdef\armor_shield.png" />
+    <Content Include="assets\image\icon\atkdef\armor_shoes.png" />
+    <Content Include="assets\image\icon\atkdef\weapon.png" />
+    <Content Include="assets\image\icon\autopot\blue_potion.png" />
+    <Content Include="assets\image\icon\autopot\white_potion.png" />
+    <Content Include="assets\image\icon\autopot\ygg.png" />
+    <Content Include="assets\image\icon\common\arrow_down.png" />
+    <Content Include="assets\image\icon\common\arrow_right.png" />
+    <Content Include="assets\image\icon\common\arrow_up.png" />
+    <Content Include="assets\image\icon\common\dagger.png" />
+    <Content Include="assets\image\icon\common\violin.png" />
+    <Content Include="assets\image\icon\skill\3rd\archbishop\refraction.png" />
+    <Content Include="assets\image\icon\skill\3rd\archbishop\shallowgrave.png" />
+    <Content Include="assets\image\icon\skill\3rd\guillotinecross\enchantpoisonarmor.png" />
+    <Content Include="assets\image\icon\skill\3rd\royalguard\manashield.png" />
+    <Content Include="assets\image\icon\ui\discord.png" />
+    <Content Include="assets\image\icon\ui\github.png" />
+    <Content Include="assets\image\icon\ui\systray_icon.ico" />
+    <Content Include="assets\image\icon\ui\url_green.png" />
+    <Content Include="assets\image\logos\applogo.png" />
+    <Content Include="assets\image\logos\osro_logo_hr.png" />
+    <Content Include="assets\image\logos\osro_logo_mr.png" />
+    <Content Include="assets\image\icon\debuff\bleeding.png" />
+    <Content Include="assets\image\icon\debuff\burning.png" />
+    <Content Include="assets\image\icon\debuff\chaos.png" />
+    <Content Include="assets\image\icon\debuff\critical_wound.png" />
+    <Content Include="assets\image\icon\debuff\curse.png" />
+    <Content Include="assets\image\icon\debuff\decrease_agi.png" />
+    <Content Include="assets\image\icon\debuff\deep_sleep.png" />
+    <Content Include="assets\image\icon\debuff\freezing.png" />
+    <Content Include="assets\image\icon\debuff\frozen.png" />
+    <Content Include="assets\image\icon\debuff\hallucination.png" />
+    <Content Include="assets\image\icon\debuff\poison_status.png" />
+    <Content Include="assets\image\icon\debuff\silence.png" />
+    <Content Include="assets\image\icon\debuff\sit.png" />
+    <Content Include="assets\image\icon\debuff\sleep.png" />
+    <Content Include="assets\image\icon\debuff\slow_cast.png" />
+    <Content Include="assets\image\icon\debuff\stonecurse1.png" />
+    <Content Include="assets\image\icon\debuff\stonecurse2.png" />
+    <Content Include="assets\image\icon\debuff\stun.png" />
+    <Content Include="assets\image\icon\debuff\weight50.png" />
+    <Content Include="assets\image\icon\debuff\weight90.png" />
+    <Content Include="assets\image\icon\item\aspd\awakening_potion.gif" />
+    <Content Include="assets\image\icon\item\aspd\berserk_potion.gif" />
+    <Content Include="assets\image\icon\item\aspd\concentration_potion.gif" />
+    <Content Include="assets\image\icon\item\boxetc\abrasive.gif" />
+    <Content Include="assets\image\icon\item\boxetc\aloevera.gif" />
+    <Content Include="assets\image\icon\item\boxetc\anodyne.gif" />
+    <Content Include="assets\image\icon\item\boxetc\boxofthunder.gif" />
+    <Content Include="assets\image\icon\item\boxetc\celermine.png" />
+    <Content Include="assets\image\icon\item\boxetc\combat_pill.png" />
+    <Content Include="assets\image\icon\item\boxetc\drowsiness.png" />
+    <Content Include="assets\image\icon\item\boxetc\gloom.png" />
+    <Content Include="assets\image\icon\item\boxetc\poison.png" />
+    <Content Include="assets\image\icon\item\boxetc\resentment.png" />
+    <Content Include="assets\image\icon\item\boxetc\speedpotion.png" />
+    <Content Include="assets\image\icon\item\boxetc\sunbox.gif" />
+    <Content Include="assets\image\icon\item\elemental\boxofstorms.png" />
+    <Content Include="assets\image\icon\item\elemental\coldproof.gif" />
+    <Content Include="assets\image\icon\item\elemental\cursed_water.gif" />
+    <Content Include="assets\image\icon\item\elemental\earthproof.gif" />
+    <Content Include="assets\image\icon\item\elemental\ele_earth_converter.png" />
+    <Content Include="assets\image\icon\item\elemental\ele_fire_converter.png" />
+    <Content Include="assets\image\icon\item\elemental\ele_holy_converter.png" />
+    <Content Include="assets\image\icon\item\elemental\ele_water_converter.png" />
+    <Content Include="assets\image\icon\item\elemental\ele_wind_converter.png" />
+    <Content Include="assets\image\icon\item\elemental\fireproof.gif" />
+    <Content Include="assets\image\icon\item\elemental\thunderproof.gif" />
+    <Content Include="assets\image\icon\item\exp\fieldmanual.png" />
+    <Content Include="assets\image\icon\item\exp\he_bubble_gum.png" />
+    <Content Include="assets\image\icon\item\food\food_agi.png" />
+    <Content Include="assets\image\icon\item\food\food_dex.png" />
+    <Content Include="assets\image\icon\item\food\food_int.png" />
+    <Content Include="assets\image\icon\item\food\food_luk.png" />
+    <Content Include="assets\image\icon\item\food\food_str.gif" />
+    <Content Include="assets\image\icon\item\food\food_vit.png" />
+    <Content Include="assets\image\icon\item\food\glass_of_illusion.png" />
+    <Content Include="assets\image\icon\item\food\halohalo.png" />
+    <Content Include="assets\image\icon\item\scroll\accuracy_scroll.png" />
+    <Content Include="assets\image\icon\item\scroll\al_blessing.png" />
+    <Content Include="assets\image\icon\item\scroll\al_incagi.png" />
+    <Content Include="assets\image\icon\item\scroll\assumptio.png" />
+    <Content Include="assets\image\icon\item\scroll\burnt_incense.png" />
+    <Content Include="assets\image\icon\item\scroll\flee_scroll.png" />
+    <Content Include="assets\image\icon\item\scroll\scroll.gif" />
+    <Content Include="assets\image\icon\item\scroll\sl_soullinker.gif" />
+    <Content Include="assets\image\icon\skill\acolyte\al_angelus.gif" />
+    <Content Include="assets\image\icon\skill\acolyte\basilica.png" />
+    <Content Include="assets\image\icon\skill\acolyte\fury.png" />
+    <Content Include="assets\image\icon\skill\acolyte\impositio_manus.png" />
+    <Content Include="assets\image\icon\skill\acolyte\pr_gloria.gif" />
+    <Content Include="assets\image\icon\skill\acolyte\pr_magnificat.gif" />
+    <Content Include="assets\image\icon\skill\archer\ac_concentration.gif" />
+    <Content Include="assets\image\icon\skill\archer\poem_of_bragi.png" />
+    <Content Include="assets\image\icon\skill\archer\sn_sight.gif" />
+    <Content Include="assets\image\icon\skill\archer\sn_windwalk.gif" />
+    <Content Include="assets\image\icon\skill\gunslinger\adjustment.gif" />
+    <Content Include="assets\image\icon\skill\gunslinger\e_chain.png" />
+    <Content Include="assets\image\icon\skill\gunslinger\gatling_fever.png" />
+    <Content Include="assets\image\icon\skill\gunslinger\increase_accuracy.png" />
+    <Content Include="assets\image\icon\skill\gunslinger\madnesscancel.gif" />
+    <Content Include="assets\image\icon\skill\mage\amplify.png" />
+    <Content Include="assets\image\icon\skill\mage\mg_energycoat.gif" />
+    <Content Include="assets\image\icon\skill\mage\mindbreaker.png" />
+    <Content Include="assets\image\icon\skill\mage\pf_doublecasting.gif" />
+    <Content Include="assets\image\icon\skill\mage\pf_memorize.gif" />
+    <Content Include="assets\image\icon\skill\mage\sa_autospell.gif" />
+    <Content Include="assets\image\icon\skill\mage\wz_sightblaster.gif" />
+    <Content Include="assets\image\icon\skill\merchant\bs_adrenaline.gif" />
+    <Content Include="assets\image\icon\skill\merchant\bs_adrenaline2.gif" />
+    <Content Include="assets\image\icon\skill\merchant\bs_maximize.gif" />
+    <Content Include="assets\image\icon\skill\merchant\bs_overthrust.gif" />
+    <Content Include="assets\image\icon\skill\merchant\bs_weaponperfect.gif" />
+    <Content Include="assets\image\icon\skill\merchant\mc_loud.gif" />
+    <Content Include="assets\image\icon\skill\merchant\ws_cartboost.gif" />
+    <Content Include="assets\image\icon\skill\merchant\ws_greedparry.png" />
+    <Content Include="assets\image\icon\skill\merchant\ws_meltdown.gif" />
+    <Content Include="assets\image\icon\skill\merchant\ws_overthrustmax.gif" />
+    <Content Include="assets\image\icon\skill\ninja\bunsinjyutsu.png" />
+    <Content Include="assets\image\icon\skill\ninja\izayoi.png" />
+    <Content Include="assets\image\icon\skill\ninja\nj_nen.gif" />
+    <Content Include="assets\image\icon\skill\ninja\nj_utsusemi.gif" />
+    <Content Include="assets\image\icon\skill\padawan\coldskin.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceconcentrate.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceelement_earth.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceelement_fire.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceelement_ghost.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceelement_holy.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceelement_shadow.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceelement_water.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceelement_wind.png" />
+    <Content Include="assets\image\icon\skill\padawan\forcehaste.png" />
+    <Content Include="assets\image\icon\skill\padawan\forcelevitate.png" />
+    <Content Include="assets\image\icon\skill\padawan\forcepersuasion.png" />
+    <Content Include="assets\image\icon\skill\padawan\forceprojection.png" />
+    <Content Include="assets\image\icon\skill\padawan\forcesacrifice.png" />
+    <Content Include="assets\image\icon\skill\padawan\hr_coldskin.png" />
+    <Content Include="assets\image\icon\skill\padawan\hr_forceconcentrate.png" />
+    <Content Include="assets\image\icon\skill\padawan\hr_forcepersuasion.png" />
+    <Content Include="assets\image\icon\skill\padawan\hr_forceprojection.png" />
+    <Content Include="assets\image\icon\skill\padawan\hr_forcesacrifice.png" />
+    <Content Include="assets\image\icon\skill\padawan\hr_jedifrenzy.png" />
+    <Content Include="assets\image\icon\skill\padawan\hr_saberparry.png" />
+    <Content Include="assets\image\icon\skill\padawan\hr_saberthrust.png" />
+    <Content Include="assets\image\icon\skill\padawan\jedifrenzy.png" />
+    <Content Include="assets\image\icon\skill\padawan\jedistealth.png" />
+    <Content Include="assets\image\icon\skill\padawan\saberparry.png" />
+    <Content Include="assets\image\icon\skill\padawan\saberthrust.png" />
+    <Content Include="assets\image\icon\skill\swordsman\cr_autoguard.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\cr_defender.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\cr_fullprotection.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\cr_reflectshield.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\cr_shrink.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\cr_spearquicken.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\lk_aurablade.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\lk_berserk.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\lk_concentration.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\lk_onehand.png" />
+    <Content Include="assets\image\icon\skill\swordsman\magnum.png" />
+    <Content Include="assets\image\icon\skill\swordsman\mer_quicken.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\ms_parrying.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\providence.png" />
+    <Content Include="assets\image\icon\skill\swordsman\provoke.png" />
+    <Content Include="assets\image\icon\skill\swordsman\sm_autoberserk.gif" />
+    <Content Include="assets\image\icon\skill\swordsman\sm_endure.gif" />
+    <Content Include="assets\image\icon\skill\taekwon\fusion.png" />
+    <Content Include="assets\image\icon\skill\taekwon\kaahi.png" />
+    <Content Include="assets\image\icon\skill\taekwon\kaite.png" />
+    <Content Include="assets\image\icon\skill\taekwon\kaizel.png" />
+    <Content Include="assets\image\icon\skill\taekwon\kaupe.png" />
+    <Content Include="assets\image\icon\skill\taekwon\moon_comfort.png" />
+    <Content Include="assets\image\icon\skill\taekwon\solar_miracle.png" />
+    <Content Include="assets\image\icon\skill\taekwon\star_comfort.png" />
+    <Content Include="assets\image\icon\skill\taekwon\sun_comfort.png" />
+    <Content Include="assets\image\icon\skill\taekwon\sun_warm.png" />
+    <Content Include="assets\image\icon\skill\taekwon\tk_mild_earth.png" />
+    <Content Include="assets\image\icon\skill\taekwon\tk_mild_fire.png" />
+    <Content Include="assets\image\icon\skill\taekwon\tk_mild_ghost.png" />
+    <Content Include="assets\image\icon\skill\taekwon\tk_mild_holy.png" />
+    <Content Include="assets\image\icon\skill\taekwon\tk_mild_shadow.png" />
+    <Content Include="assets\image\icon\skill\taekwon\tk_mild_water.png" />
+    <Content Include="assets\image\icon\skill\taekwon\tk_mild_wind.png" />
+    <Content Include="assets\image\icon\skill\taekwon\tumbling.png" />
+    <Content Include="assets\image\icon\skill\thief\asc_edp.gif" />
+    <Content Include="assets\image\icon\skill\thief\as_poisonreact.gif" />
+    <Content Include="assets\image\icon\skill\thief\chase_walk.png" />
+    <Content Include="assets\image\icon\skill\thief\cloaking.png" />
+    <Content Include="assets\image\icon\skill\thief\hiding.png" />
+    <Content Include="assets\image\icon\skill\thief\st_preserve.gif" />
+    <Content Include="assets\image\icon\skill\thief\st_rejectsword.gif" />
+    <Content Include="assets\image\icon\ui\add.png" />
+    <Content Include="assets\image\icon\ui\copy.png" />
+    <Content Include="assets\image\icon\ui\delete.png" />
+    <Content Include="assets\image\icon\ui\edit.png" />
+    <Content Include="assets\image\icon\ui\info.png" />
+    <Content Include="assets\image\icon\ui\refresh.png" />
+    <Content Include="assets\image\icon\ui\toggle_off.png" />
+    <Content Include="assets\image\icon\ui\toggle_on.png" />
+    <Content Include="assets\image\logos\4rtools.svg" />
+    <Content Include="assets\sound\toggle_off.wav" />
+    <Content Include="assets\sound\toggle_on.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Aspose.Zip">
+      <Version>25.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="Costura.Fody">
+      <Version>6.0.0</Version>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Win32.Primitives">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="NETStandard.Library">
+      <Version>2.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.AppContext">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Collections">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Concurrent">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Console">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.Debug">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.DiagnosticSource">
+      <Version>9.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.Tools">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.Tracing">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Globalization">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Globalization.Calendars">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.IO.Compression">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.IO.Compression.ZipFile">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.IO.FileSystem">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Linq">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Linq.Expressions">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Primitives">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Sockets">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.ObjectModel">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Extensions">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Primitives">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Resources.ResourceManager">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>6.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Extensions">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Handles">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.InteropServices">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Numerics">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml">
+      <Version>4.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Encoding">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Encoding.Extensions">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.RegularExpressions">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Timer">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Xml.ReaderWriter">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Xml.XDocument">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="PackageOutputsAfterBuild" AfterTargets="Build">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release-MR' ">
+      <PackageDir>$(SolutionDir)bin\OSRO Tools-MR\</PackageDir>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release-HR' ">
+      <PackageDir>$(SolutionDir)bin\OSRO Tools-HR\</PackageDir>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release-LR' ">
+      <PackageDir>$(SolutionDir)bin\OSRO Tools-LR\</PackageDir>
+    </PropertyGroup>
+    <MakeDir Directories="$(PackageDir)" Condition=" '$(PackageDir)' != '' " />
+    <ItemGroup Condition=" '$(PackageDir)' != '' ">
+      <FilesToPackage Include="$(OutputPath)**\*.*" Exclude="$(OutputPath)$(TargetName).exe.config" />
+    </ItemGroup>
+    <Copy SourceFiles="@(FilesToPackage)" DestinationFolder="$(PackageDir)" SkipUnchangedFiles="true" Condition=" '$(PackageDir)' != '' " />
+  </Target>
+</Project>
