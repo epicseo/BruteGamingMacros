@@ -353,6 +353,9 @@
     <Compile Include="Model\Action.cs" />
     <Compile Include="Model\Macro.cs" />
     <Compile Include="Model\Profile.cs" />
+    <Compile Include="Model\AutoSwitch.cs" />
+    <Compile Include="Model\AutoSwitchRenderer.cs" />
+    <Compile Include="Model\Tracker.cs" />
     <Compile Include="Core\Engine\SuperiorInputEngine.cs" />
     <Compile Include="Core\Engine\SuperiorSkillSpammer.cs" />
     <Compile Include="Core\Engine\SuperiorMemoryEngine.cs" />
