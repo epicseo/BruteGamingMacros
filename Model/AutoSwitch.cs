@@ -11,14 +11,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace BruteGamingMacros.Core.Model
 {
 
-    public class AutoSwitch : Action
+    public class AutoSwitch : IAction
     {
         public static string ACTION_NAME_AUTOSWITCH = "AutoSwitch";
         public const string item = "ITEM";
         public const string skill = "SKILL";
         public const string nextItem = "NEXTITEM";
 
-        private _4RThread thread;
+        private ThreadRunner thread;
         public int delay { get; set; } = 300;
         public int switchEquipDelay { get; set; } = 1000;
         public Dictionary<EffectStatusIDs, Key> buffMapping = new Dictionary<EffectStatusIDs, Key>();
@@ -69,15 +69,15 @@ namespace BruteGamingMacros.Core.Model
             {
                 if (this.thread != null)
                 {
-                    _4RThread.Stop(this.thread);
+                    ThreadRunner.Stop(this.thread);
                 }
                 if (this.listCities == null || this.listCities.Count == 0) this.listCities = LocalServerManager.GetListCities();
                 this.thread = AutoSwitchThread(roClient);
-                _4RThread.Start(this.thread);
+                ThreadRunner.Start(this.thread);
             }
         }
 
-        public _4RThread AutoSwitchThread(Client c)
+        public ThreadRunner AutoSwitchThread(Client c)
         {
             bool equipVajra = false;
             int contVajra = 0;
@@ -94,7 +94,7 @@ namespace BruteGamingMacros.Core.Model
             var currentPet = EffectStatusIDs.PROVOKE;
             bool equipedPet = false;
             bool procPet = true;
-            _4RThread autobuffItemThread = new _4RThread(_ =>
+            ThreadRunner autobuffItemThread = new ThreadRunner(_ =>
             {
                 procVajra = false;
                 List<AutoSwitchConfig> skillClone = new List<AutoSwitchConfig>(this.autoSwitchMapping.Where(x => x.itemKey != Key.None));
@@ -252,7 +252,7 @@ namespace BruteGamingMacros.Core.Model
 
         public void Stop()
         {
-            _4RThread.Stop(this.thread);
+            ThreadRunner.Stop(this.thread);
         }
 
         public string GetConfiguration()

@@ -48,7 +48,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Updating 4RTools...";
+            this.label1.Text = "Updating Brute Gaming Macros...";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // AutoPatcher
