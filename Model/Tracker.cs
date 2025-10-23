@@ -48,6 +48,11 @@ namespace BruteGamingMacros.Core.Model
 
         public async Task SendEvent(string action, string category, string label)
         {
+            // Analytics tracking disabled - AppConfig._4RApiHost does not exist
+            // This was part of the old 4RTools analytics system
+            await Task.CompletedTask;
+
+            /*
             try
             {
                 TrackerData tD = new TrackerData(action, label, category);
@@ -64,8 +69,7 @@ namespace BruteGamingMacros.Core.Model
                 Console.WriteLine(err.ToString());
                 throw;
             }
-
-
+            */
         }
     }
 }
