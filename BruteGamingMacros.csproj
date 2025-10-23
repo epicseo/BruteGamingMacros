@@ -140,7 +140,7 @@
     <ManifestCertificateThumbprint>D23C52749664C893CEAA696749FDA24E4E4F528C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>4RTools_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>BruteGamingMacros_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -422,7 +422,7 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="assets\image\logos\applogo.psd" />
-    <None Include="Properties\DataSources\_4RTools.Model.ClientDTO.datasource" />
+    <None Include="Properties\DataSources\BruteGamingMacros.Core.Model.ClientDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -639,7 +639,6 @@
     <Content Include="assets\image\icon\ui\refresh.png" />
     <Content Include="assets\image\icon\ui\toggle_off.png" />
     <Content Include="assets\image\icon\ui\toggle_on.png" />
-    <Content Include="assets\image\logos\4rtools.svg" />
     <Content Include="assets\sound\toggle_off.wav" />
     <Content Include="assets\sound\toggle_on.wav" />
   </ItemGroup>

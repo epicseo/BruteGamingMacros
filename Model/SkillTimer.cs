@@ -41,11 +41,11 @@ namespace BruteGamingMacros.Core.Model
             }
         }
 
-        private void ValidadeThreads(ThreadRunner _4RThread)
+        private void ValidadeThreads(ThreadRunner threadRunner)
         {
-            if (_4RThread != null)
+            if (threadRunner != null)
             {
-                ThreadRunner.Stop(_4RThread);
+                ThreadRunner.Stop(threadRunner);
             }
         }
 
