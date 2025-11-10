@@ -93,7 +93,7 @@ namespace BruteGamingMacros.Core.Engine
             Client roClient = ClientSingleton.GetClient();
             if (roClient == null)
             {
-                Console.WriteLine("SuperiorSkillSpammer: No client available");
+                DebugLogger.Warning("SuperiorSkillSpammer: No client available");
                 return;
             }
 
@@ -104,7 +104,7 @@ namespace BruteGamingMacros.Core.Engine
             thread = new ThreadRunner((_) => SpamExecutionThread(roClient, config));
             ThreadRunner.Start(thread);
 
-            Console.WriteLine($"SuperiorSkillSpammer started - Mode: {currentSpamMode}, Speed: {config.SpeedMode}");
+            DebugLogger.Info($"SuperiorSkillSpammer started - Mode: {currentSpamMode}, Speed: {config.SpeedMode}");
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace BruteGamingMacros.Core.Engine
                 thread = null;
             }
 
-            Console.WriteLine($"SuperiorSkillSpammer stopped - {inputEngine.GetPerformanceReport()}");
+            DebugLogger.Info($"SuperiorSkillSpammer stopped - {inputEngine.GetPerformanceReport()}");
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace BruteGamingMacros.Core.Engine
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"SuperiorSkillSpammer error: {ex.Message}");
+                DebugLogger.Error(ex, "SuperiorSkillSpammer");
                 Thread.Sleep(100);
             }
 

@@ -177,11 +177,6 @@ namespace BruteGamingMacros.Core.Utils
                 ? "Exception: " + ex.Message
                 : context + ": " + ex.Message;
             Log(LogLevel.ERROR, msg);
-
-            /*
-            if (_debugMode)
-                Log(LogLevel.DEBUG, "Stack trace: " + ex.StackTrace);
-            */
         }
 
         public static void Debug(string message) => Log(LogLevel.DEBUG, message);
