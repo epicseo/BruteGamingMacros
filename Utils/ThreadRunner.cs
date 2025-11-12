@@ -66,6 +66,14 @@ namespace BruteGamingMacros.Core.Utils
         {
             running = false;
             suspendEvent.Set(); // Unblock the wait if paused
+
+            // Wait for thread to finish with timeout
+            const int TERMINATE_TIMEOUT_MS = 5000;
+            if (thread.IsAlive && !thread.Join(TERMINATE_TIMEOUT_MS))
+            {
+                DebugLogger.Warning("[ThreadRunner] Thread did not terminate gracefully within timeout");
+                // Don't use Thread.Abort() as it's dangerous - let it finish naturally
+            }
         }
     }
 }
