@@ -11,6 +11,9 @@ on:
         required: true
         default: '2.0.1'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -224,8 +227,9 @@ LICENSE: MIT License
 
     - name: Create GitHub Release
       if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
         files: |
           *.zip
           checksums.txt
@@ -233,8 +237,7 @@ LICENSE: MIT License
         body_path: release-notes.md
         draft: false
         prerelease: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        fail_on_unmatched_files: false
 
     - name: Build summary
       shell: powershell
