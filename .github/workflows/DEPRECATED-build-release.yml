@@ -1,15 +1,13 @@
-name: Build and Release
+# ⚠️ DEPRECATED - DO NOT USE
+# This workflow has been replaced by release-consolidated.yml
+# Kept for historical reference only
+# Will be deleted after 2025-12-01
+
+name: "[DEPRECATED] Build and Release"
 
 on:
-  push:
-    tags:
-      - 'v*'
+  # Triggers disabled - workflow inactive
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to build (e.g., 2.0.1)'
-        required: true
-        default: '2.0.1'
 
 permissions:
   contents: write
