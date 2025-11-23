@@ -74,7 +74,7 @@ namespace BruteGamingMacros.Core.Model
                     catch (Exception ex)
                     {
                         // Log the error but continue loading with default TransferHelper
-                        Console.WriteLine($"Failed to migrate Custom to TransferHelper: {ex.Message}");
+                        DebugLogger.Error(ex, "Failed to migrate Custom to TransferHelper");
                         rawObject["TransferHelper"] = JsonConvert.SerializeObject(new TransferHelper());
                         rawObject.Property("Custom").Remove();
                         File.WriteAllText(AppConfig.ProfileFolder + profileName + ".json", JsonConvert.SerializeObject(rawObject, Formatting.Indented));
@@ -159,7 +159,7 @@ namespace BruteGamingMacros.Core.Model
             catch (Exception ex)
             {
                 // Log error but don't throw - file may already be deleted
-                Console.WriteLine($"Failed to delete profile '{profileName}': {ex.Message}");
+                DebugLogger.Error(ex, $"Failed to delete profile '{profileName}'");
             }
         }
 
@@ -345,7 +345,7 @@ namespace BruteGamingMacros.Core.Model
             catch (Exception ex)
             {
                 // Log error and return empty list
-                Console.WriteLine($"Failed to list profiles: {ex.Message}");
+                DebugLogger.Error(ex, "Failed to list profiles");
             }
             return profiles;
         }
