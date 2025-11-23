@@ -191,7 +191,7 @@ namespace BruteGamingMacros.Core.Model
 
                     try
                     {
-                        Client c = GetClientByProcess(rawProcessName) ?? throw new Exception();
+                        Client c = GetClientByProcess(rawProcessName) ?? throw new InvalidOperationException($"Client not found for process: {rawProcessName}");
                         this.CurrentHPBaseAddress = c.CurrentHPBaseAddress;
                         this.CurrentNameAddress = c.CurrentNameAddress;
                         this.CurrentMapAddress = c.CurrentMapAddress;
