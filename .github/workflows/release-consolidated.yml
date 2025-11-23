@@ -137,42 +137,32 @@ jobs:
           Copy-Item "$binPath\BruteGamingMacros.exe.config" -Destination $tempDir -ErrorAction SilentlyContinue
 
           # Create README
-          $readme = @"
-Brute Gaming Macros v$version$suffix - Portable Edition
-
-INSTALLATION:
-1. Extract all files to a folder of your choice
-2. Run BruteGamingMacros.exe as Administrator
-3. Configure your game profiles and hotkeys
-
-REQUIREMENTS:
-- Windows 10/11 (64-bit)
-- .NET Framework 4.8.1 or higher
-- Administrator privileges
-
-CONFIGURATION:
-Server Mode: $config
-
-FIRST TIME SETUP:
-The application will create configuration files in:
-  %LocalAppData%\BruteGamingMacros\
-
-ANTIVIRUS WARNING:
-This application uses legitimate Windows APIs (ReadProcessMemory, SendInput)
-that may trigger false positives in some antivirus software.
-Please whitelist the application folder.
-
-DOCUMENTATION:
-- Antivirus Guide: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/ANTIVIRUS.md
-- Installation Guide: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/INSTALL.md
-- FAQ: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/FAQ.md
-
-SUPPORT:
-- GitHub: https://github.com/epicseo/BruteGamingMacros
-- Issues: https://github.com/epicseo/BruteGamingMacros/issues
-
-LICENSE: MIT License
-"@
+          $readme = "Brute Gaming Macros v$version$suffix - Portable Edition`n`n" +
+            "INSTALLATION:`n" +
+            "1. Extract all files to a folder of your choice`n" +
+            "2. Run BruteGamingMacros.exe as Administrator`n" +
+            "3. Configure your game profiles and hotkeys`n`n" +
+            "REQUIREMENTS:`n" +
+            "- Windows 10/11 (64-bit)`n" +
+            "- .NET Framework 4.8.1 or higher`n" +
+            "- Administrator privileges`n`n" +
+            "CONFIGURATION:`n" +
+            "Server Mode: $config`n`n" +
+            "FIRST TIME SETUP:`n" +
+            "The application will create configuration files in:`n" +
+            "  %LocalAppData%\BruteGamingMacros\`n`n" +
+            "ANTIVIRUS WARNING:`n" +
+            "This application uses legitimate Windows APIs (ReadProcessMemory, SendInput)`n" +
+            "that may trigger false positives in some antivirus software.`n" +
+            "Please whitelist the application folder.`n`n" +
+            "DOCUMENTATION:`n" +
+            "- Antivirus Guide: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/ANTIVIRUS.md`n" +
+            "- Installation Guide: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/INSTALL.md`n" +
+            "- FAQ: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/FAQ.md`n`n" +
+            "SUPPORT:`n" +
+            "- GitHub: https://github.com/epicseo/BruteGamingMacros`n" +
+            "- Issues: https://github.com/epicseo/BruteGamingMacros/issues`n`n" +
+            "LICENSE: MIT License"
           Set-Content -Path "$tempDir\README.txt" -Value $readme
 
           # Create ZIP
