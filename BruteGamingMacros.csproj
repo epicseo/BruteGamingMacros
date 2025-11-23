@@ -382,20 +382,23 @@
       <DependentUpon>Icons.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\AmmoSwapHandler.cs" />
-    <Compile Include="Utils\DebugLogger.cs" />
-    <Compile Include="Utils\EffectStatusIDs.cs" />
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\CrashReporter.cs" />
+    <Compile Include="Utils\DebugLogger.cs" />
+    <Compile Include="Utils\EffectStatusIDs.cs" />
     <Compile Include="Utils\FormUtils.cs" />
     <Compile Include="Utils\Interop.cs" />
     <Compile Include="Utils\KeyboardHook.cs" />
     <Compile Include="Utils\NotificationTrayManager.cs" />
     <Compile Include="Utils\ProcessMemoryReader.cs" />
+    <Compile Include="Utils\ProductionLogger.cs" />
     <Compile Include="Utils\ProfileValidator.cs" />
     <Compile Include="Utils\RObserver.cs" />
     <Compile Include="Utils\StatusIdLogger.cs" />
     <Compile Include="Utils\StatusUtils.cs" />
     <Compile Include="Utils\ThreadRunner.cs" />
+    <Compile Include="Utils\UpdateChecker.cs" />
     <EmbeddedResource Include="Forms\ToggleStateForm.resx">
       <DependentUpon>ToggleStateForm.cs</DependentUpon>
       <SubType>Designer</SubType>

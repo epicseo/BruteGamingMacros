@@ -1,9 +1,13 @@
-name: Release
+# ⚠️ DEPRECATED - DO NOT USE
+# This workflow has been replaced by release-consolidated.yml
+# Kept for historical reference only
+# Will be deleted after 2025-12-01
+
+name: "[DEPRECATED] Release"
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  # Triggers disabled - workflow inactive
+  workflow_dispatch:
 
 permissions:
   contents: write

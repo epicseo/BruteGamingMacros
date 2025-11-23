@@ -1,0 +1,362 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Only semantic versioning tags (v1.0.0, v2.0.1, etc.)
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build (e.g., 2.0.2)'
+        required: true
+        default: '2.0.2'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and Release
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Extract version
+      id: version
+      shell: powershell
+      run: |
+        if ("${{ github.ref }}" -match "refs/tags/v(.+)") {
+          $version = $matches[1]
+          $tag = "v$version"
+        } else {
+          $version = "${{ github.event.inputs.version }}"
+          $tag = "v$version"
+        }
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+        echo "TAG=$tag" >> $env:GITHUB_OUTPUT
+        Write-Host "Building version: $version" -ForegroundColor Green
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore BruteGamingMacros.sln
+
+    - name: Update version file
+      shell: powershell
+      run: |
+        $version = "${{ steps.version.outputs.VERSION }}"
+        Set-Content -Path "build\version.txt" -Value $version
+        Write-Host "Version file updated to: $version" -ForegroundColor Green
+
+    - name: Build Release (Standard)
+      run: msbuild BruteGamingMacros.sln /p:Configuration=Release /p:Platform="Any CPU" /t:Rebuild /v:minimal /nologo
+
+    - name: Build Release-MR (Midrate)
+      continue-on-error: true
+      run: msbuild BruteGamingMacros.sln /p:Configuration=Release-MR /p:Platform="Any CPU" /t:Rebuild /v:minimal /nologo
+
+    - name: Build Release-HR (Highrate)
+      continue-on-error: true
+      run: msbuild BruteGamingMacros.sln /p:Configuration=Release-HR /p:Platform="Any CPU" /t:Rebuild /v:minimal /nologo
+
+    - name: Build Release-LR (Lowrate)
+      continue-on-error: true
+      run: msbuild BruteGamingMacros.sln /p:Configuration=Release-LR /p:Platform="Any CPU" /t:Rebuild /v:minimal /nologo
+
+    - name: Verify main build succeeded
+      shell: powershell
+      run: |
+        if (!(Test-Path "bin\Release\BruteGamingMacros.exe")) {
+          Write-Error "Main Release build failed - executable not found!"
+          exit 1
+        }
+        Write-Host "✓ Main Release build succeeded" -ForegroundColor Green
+
+    - name: Install NSIS
+      shell: powershell
+      run: |
+        Write-Host "Installing NSIS via Chocolatey..." -ForegroundColor Yellow
+        choco install nsis -y --no-progress
+        Write-Host "NSIS installed successfully" -ForegroundColor Green
+        & "C:\Program Files (x86)\NSIS\makensis.exe" /VERSION
+
+    - name: Build NSIS installer
+      shell: powershell
+      run: |
+        $version = "${{ steps.version.outputs.VERSION }}"
+        if (Test-Path "installer\installer.nsi") {
+          Write-Host "Building NSIS installer for version $version..." -ForegroundColor Yellow
+          & "C:\Program Files (x86)\NSIS\makensis.exe" /DVERSION="$version" installer\installer.nsi
+
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "✓ Installer built successfully" -ForegroundColor Green
+          } else {
+            Write-Warning "NSIS build returned exit code: $LASTEXITCODE"
+          }
+        } else {
+          Write-Warning "NSIS installer script not found at installer\installer.nsi"
+        }
+
+    - name: Create portable packages
+      shell: powershell
+      run: |
+        $version = "${{ steps.version.outputs.VERSION }}"
+
+        function Create-PortablePackage {
+          param($config, $suffix)
+
+          $binPath = "bin\$config"
+          if (-not (Test-Path $binPath)) {
+            Write-Warning "$config build not found, skipping portable package"
+            return
+          }
+
+          if (-not (Test-Path "$binPath\BruteGamingMacros.exe")) {
+            Write-Warning "$config executable not found, skipping"
+            return
+          }
+
+          $zipName = "BruteGamingMacros-v$version$suffix-portable.zip"
+          $tempDir = "temp_$config"
+
+          Write-Host "Creating portable package: $zipName" -ForegroundColor Yellow
+
+          # Create temp directory
+          New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
+
+          # Copy files
+          Copy-Item "$binPath\BruteGamingMacros.exe" -Destination $tempDir -ErrorAction Stop
+          Copy-Item "$binPath\BruteGamingMacros.exe.config" -Destination $tempDir -ErrorAction SilentlyContinue
+
+          # Create README
+          $readme = @"
+Brute Gaming Macros v$version$suffix - Portable Edition
+
+INSTALLATION:
+1. Extract all files to a folder of your choice
+2. Run BruteGamingMacros.exe as Administrator
+3. Configure your game profiles and hotkeys
+
+REQUIREMENTS:
+- Windows 10/11 (64-bit)
+- .NET Framework 4.8.1 or higher
+- Administrator privileges
+
+CONFIGURATION:
+Server Mode: $config
+
+FIRST TIME SETUP:
+The application will create configuration files in:
+  %LocalAppData%\BruteGamingMacros\
+
+ANTIVIRUS WARNING:
+This application uses legitimate Windows APIs (ReadProcessMemory, SendInput)
+that may trigger false positives in some antivirus software.
+Please whitelist the application folder.
+
+DOCUMENTATION:
+- Antivirus Guide: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/ANTIVIRUS.md
+- Installation Guide: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/INSTALL.md
+- FAQ: https://github.com/epicseo/BruteGamingMacros/blob/main/docs/FAQ.md
+
+SUPPORT:
+- GitHub: https://github.com/epicseo/BruteGamingMacros
+- Issues: https://github.com/epicseo/BruteGamingMacros/issues
+
+LICENSE: MIT License
+"@
+          Set-Content -Path "$tempDir\README.txt" -Value $readme
+
+          # Create ZIP
+          Compress-Archive -Path "$tempDir\*" -DestinationPath $zipName -Force
+          Remove-Item $tempDir -Recurse -Force
+
+          Write-Host "✓ Created: $zipName" -ForegroundColor Green
+        }
+
+        # Create portable packages for each successful build
+        Create-PortablePackage "Release" ""
+        Create-PortablePackage "Release-MR" "-MR"
+        Create-PortablePackage "Release-HR" "-HR"
+        Create-PortablePackage "Release-LR" "-LR"
+
+    - name: Generate SHA256 checksums
+      shell: powershell
+      run: |
+        $version = "${{ steps.version.outputs.VERSION }}"
+        $output = @()
+
+        $output += "Brute Gaming Macros v$version - SHA256 Checksums"
+        $output += "Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss UTC')"
+        $output += "=" * 70
+        $output += ""
+
+        # Checksum for executables
+        $exeCount = 0
+        Get-ChildItem "bin\Release*\BruteGamingMacros.exe" -ErrorAction SilentlyContinue | ForEach-Object {
+          $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash
+          $output += "$($_.Directory.Name)\$($_.Name)"
+          $output += "  SHA256: $hash"
+          $output += ""
+          $exeCount++
+        }
+
+        if ($exeCount -eq 0) {
+          Write-Warning "No executables found for checksum generation"
+        } else {
+          Write-Host "Generated checksums for $exeCount executables" -ForegroundColor Green
+        }
+
+        # Checksum for portable ZIPs
+        $zipCount = 0
+        Get-ChildItem "*.zip" -ErrorAction SilentlyContinue | ForEach-Object {
+          $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash
+          $size = [math]::Round($_.Length / 1MB, 2)
+          $output += "$($_.Name) ($size MB)"
+          $output += "  SHA256: $hash"
+          $output += ""
+          $zipCount++
+        }
+
+        Write-Host "Generated checksums for $zipCount portable packages" -ForegroundColor Green
+
+        # Checksum for installer (if exists)
+        $installerPath = "installer\BruteGamingMacros-Setup-v$version.exe"
+        if (Test-Path $installerPath) {
+          $hash = (Get-FileHash $installerPath -Algorithm SHA256).Hash
+          $size = [math]::Round((Get-Item $installerPath).Length / 1MB, 2)
+          $output += "BruteGamingMacros-Setup-v$version.exe ($size MB)"
+          $output += "  SHA256: $hash"
+          $output += ""
+          Write-Host "Generated checksum for installer" -ForegroundColor Green
+        }
+
+        Set-Content -Path "checksums.txt" -Value $output
+        Write-Host ""
+        Write-Host "Checksums saved to checksums.txt" -ForegroundColor Green
+        Write-Host ""
+        Get-Content checksums.txt
+
+    - name: Extract changelog for this version
+      shell: powershell
+      run: |
+        $version = "${{ steps.version.outputs.VERSION }}"
+        $changelogPath = "docs\CHANGELOG.md"
+
+        if (Test-Path $changelogPath) {
+          $changelog = Get-Content $changelogPath -Raw
+
+          # Try to extract specific version section
+          $pattern = "(?s)## \[$version\].*?(?=## \[|\z)"
+          $match = [regex]::Match($changelog, $pattern)
+
+          if ($match.Success) {
+            $notes = $match.Value.Trim()
+            Write-Host "Found changelog section for version $version" -ForegroundColor Green
+          } else {
+            # Try unreleased section
+            $pattern = "(?s)## \[Unreleased\].*?(?=## \[|\z)"
+            $match = [regex]::Match($changelog, $pattern)
+
+            if ($match.Success) {
+              $notes = $match.Value.Trim()
+              Write-Host "Using unreleased changelog section" -ForegroundColor Yellow
+            } else {
+              $notes = "Release v$version`n`nSee CHANGELOG.md for full details."
+              Write-Host "No changelog section found, using default" -ForegroundColor Yellow
+            }
+          }
+        } else {
+          $notes = "Release v$version`n`nProduction release of Brute Gaming Macros."
+          Write-Host "No CHANGELOG.md found, using default notes" -ForegroundColor Yellow
+        }
+
+        Set-Content -Path "release-notes.md" -Value $notes
+        Write-Host ""
+        Write-Host "Release notes prepared:" -ForegroundColor Cyan
+        Write-Host "----------------------------------------"
+        Get-Content "release-notes.md"
+        Write-Host "----------------------------------------"
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: BruteGamingMacros-v${{ steps.version.outputs.VERSION }}
+        path: |
+          *.zip
+          checksums.txt
+          installer/*.exe
+          release-notes.md
+        if-no-files-found: warn
+        retention-days: 90
+
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v2
+      with:
+        name: Brute Gaming Macros ${{ steps.version.outputs.TAG }}
+        body_path: release-notes.md
+        draft: false
+        prerelease: ${{ contains(steps.version.outputs.TAG, 'alpha') || contains(steps.version.outputs.TAG, 'beta') || contains(steps.version.outputs.TAG, 'rc') }}
+        files: |
+          *.zip
+          checksums.txt
+          installer/*.exe
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fail_on_unmatched_files: false
+
+    - name: Build summary
+      shell: powershell
+      run: |
+        Write-Host ""
+        Write-Host "=" * 70 -ForegroundColor Cyan
+        Write-Host "BUILD AND RELEASE SUMMARY" -ForegroundColor Cyan
+        Write-Host "=" * 70 -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "Version:       ${{ steps.version.outputs.VERSION }}" -ForegroundColor White
+        Write-Host "Tag:           ${{ steps.version.outputs.TAG }}" -ForegroundColor White
+        Write-Host ""
+
+        # Count artifacts
+        $zipCount = (Get-ChildItem "*.zip" -ErrorAction SilentlyContinue).Count
+        $installerExists = Test-Path "installer\*.exe"
+
+        Write-Host "Artifacts created:" -ForegroundColor Yellow
+
+        if ($zipCount -gt 0) {
+          Get-ChildItem "*.zip" | ForEach-Object {
+            $size = [math]::Round($_.Length / 1MB, 2)
+            Write-Host "  ✓ $($_.Name) ($size MB)" -ForegroundColor Green
+          }
+        } else {
+          Write-Host "  ⚠ No portable packages created" -ForegroundColor Yellow
+        }
+
+        if ($installerExists) {
+          Get-ChildItem "installer\*.exe" | ForEach-Object {
+            $size = [math]::Round($_.Length / 1MB, 2)
+            Write-Host "  ✓ $($_.Name) ($size MB)" -ForegroundColor Green
+          }
+        } else {
+          Write-Host "  ⚠ No installer created" -ForegroundColor Yellow
+        }
+
+        Write-Host "  ✓ checksums.txt" -ForegroundColor Green
+        Write-Host "  ✓ release-notes.md" -ForegroundColor Green
+        Write-Host ""
+        Write-Host "=" * 70 -ForegroundColor Cyan
+        Write-Host "✓ BUILD COMPLETED SUCCESSFULLY!" -ForegroundColor Green
+        Write-Host "=" * 70 -ForegroundColor Cyan
+        Write-Host ""
+
+        if ("${{ github.ref }}" -match "refs/tags/") {
+          Write-Host "Release URL: https://github.com/${{ github.repository }}/releases/tag/${{ steps.version.outputs.TAG }}" -ForegroundColor Cyan
+        }
