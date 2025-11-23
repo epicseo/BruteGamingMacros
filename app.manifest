@@ -4,17 +4,21 @@
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
-        <!-- Opções de Manifesto UAC
- Se você deseja alterar o nível de Controle de Conta de Usuário do Windows, substitua o nó requestedExecutionLevel 
- por um dos seguintes.
+        <!-- UAC Manifest Options
+             This application requires Administrator privileges for the following reasons:
+             1. ReadProcessMemory/WriteProcessMemory API calls (kernel32.dll)
+             2. Process handle access with PROCESS_VM_OPERATION, PROCESS_VM_READ, PROCESS_VM_WRITE
+             3. Memory address manipulation for game automation
 
-<requestedExecutionLevel  level="asInvoker" uiAccess="false" />
-        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
-        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+             Without administrator privileges, OpenProcess() calls will fail when attempting to
+             access memory of the target game client process.
 
- Especificar o elemento requestedExecutionLevel desabilitará a virtualização de arquivos e Registro. 
- Remova esse elemento se seu aplicativo requer essa virtualização para compatibilidade
-            com versões anteriores.
+             Alternative approaches considered:
+             - asInvoker: Would fail at OpenProcess() - memory operations require elevation
+             - highestAvailable: User may not run as admin, causing unpredictable behavior
+
+             PRODUCTION NOTE: This is a legitimate requirement for process memory reading.
+             The application only accesses memory of configured game processes.
         -->
         <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
       </requestedPrivileges>

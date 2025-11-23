@@ -35,7 +35,7 @@ namespace BruteGamingMacros.Core.Model
                 // Validate file exists and is safe to load
                 if (!ProfileValidator.ValidateProfileFile(profilePath))
                 {
-                    throw new Exception($"Profile validation failed for: {sanitizedName}");
+                    throw new InvalidDataException($"Profile validation failed for: {sanitizedName}");
                 }
 
                 string json = File.ReadAllText(profilePath);
@@ -43,7 +43,7 @@ namespace BruteGamingMacros.Core.Model
                 // Additional JSON validation
                 if (!ProfileValidator.ValidateProfileJson(json))
                 {
-                    throw new Exception($"Invalid profile JSON for: {sanitizedName}");
+                    throw new InvalidDataException($"Invalid profile JSON for: {sanitizedName}");
                 }
 
                 dynamic rawObject = JsonConvert.DeserializeObject(json);
@@ -113,7 +113,7 @@ namespace BruteGamingMacros.Core.Model
             }
             catch (Exception ex)
             {
-                throw new Exception($"There was a problem loading the profile: {ex.Message}. Delete the Profiles folder and try again.");
+                throw new InvalidDataException($"There was a problem loading the profile: {ex.Message}. Delete the Profiles folder and try again.", ex);
             }
         }
 
@@ -172,7 +172,7 @@ namespace BruteGamingMacros.Core.Model
             {
                 if (oldProfileName == "Default")
                 {
-                    throw new Exception("Cannot rename the Default profile!");
+                    throw new InvalidOperationException("Cannot rename the Default profile!");
                 }
 
                 string oldFilePath = AppConfig.ProfileFolder + oldProfileName + ".json";
@@ -180,11 +180,11 @@ namespace BruteGamingMacros.Core.Model
 
                 if (!File.Exists(oldFilePath))
                 {
-                    throw new Exception("Profile file does not exist!");
+                    throw new FileNotFoundException("Profile file does not exist!");
                 }
                 if (File.Exists(newFilePath))
                 {
-                    throw new Exception("A profile with the new name already exists!");
+                    throw new IOException("A profile with the new name already exists!");
                 }
 
                 // Rename the file
@@ -201,7 +201,7 @@ namespace BruteGamingMacros.Core.Model
             }
             catch (Exception ex)
             {
-                throw new Exception($"Failed to rename profile: {ex.Message}");
+                throw new IOException($"Failed to rename profile: {ex.Message}", ex);
             }
         }
 
@@ -269,7 +269,7 @@ namespace BruteGamingMacros.Core.Model
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error copying profile file: {ex.Message}", ex);
+                throw new IOException($"Error copying profile file: {ex.Message}", ex);
             }
         }
     }

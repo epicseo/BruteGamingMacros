@@ -96,7 +96,7 @@ namespace BruteGamingMacros.Core.Utils
             int num = MemoryApi.CloseHandle(this.m_hProcess);
             if (num == 0)
             {
-                throw new Exception("CloseHandle failed");
+                throw new InvalidOperationException("CloseHandle failed - unable to close process handle");
             }
         }
 
