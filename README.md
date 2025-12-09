@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/image/logos/XX" alt="Brute Gaming Macros" width="256">
+  <img src="assets/image/logos/applogo.png" alt="Brute Gaming Macros" width="256">
 </p>
 
 <p align="center">
@@ -29,17 +29,19 @@
   </a>
 </p>
 
-# Brute Gaming Macros v2.0.1
+# Brute Gaming Macros v2.1.0
 **Production-Ready Gaming Automation Suite**
 
 ## 🔥 Overview
 **Brute Gaming Macros** is a production-ready, high-performance gaming macro tool - the evolution of automation for Ragnarok Online. Originally inspired by the community tools TalesTools and related projects, this represents a complete reimagining focused on maximum performance, reliability, and professional deployment.
 
-**Version 2.0.1** brings production deployment infrastructure, comprehensive documentation, automated CI/CD, and professional-grade features while maintaining full compatibility with [OsRO MR](https://osro.mr/), [OsRO HR](https://osro.gg/), and [OsRO LR](https://osro-revo.gg/).
+**Version 2.1.0** brings production deployment infrastructure, comprehensive documentation, automated CI/CD, and professional-grade features while maintaining full compatibility with [OsRO MR](https://osro.mr/) and [OsRO HR](https://osro.gg/).
+
+> **Note:** OsRO LR (Revo) support is planned but not yet available. Memory addresses need to be configured.
 
 > 🚀 **Production Ready:** Professional installer, automated builds, crash reporting, structured logging, and comprehensive documentation.
 
-## ⚡ What's New in v2.0.1
+## ⚡ What's New in v2.1.0
 
 ### 🏗️ Production Infrastructure
 - **Professional Installer:** NSIS-based installer with .NET Framework detection
@@ -101,13 +103,13 @@
 ## 📦 Installation
 
 ### Option 1: Installer (Recommended)
-1. Download `BruteGamingMacros-Setup-v2.0.1.exe` from [latest release](https://github.com/epicseo/BruteGamingMacros/releases/latest)
+1. Download `BruteGamingMacros-Setup-v2.1.0.exe` from [latest release](https://github.com/epicseo/BruteGamingMacros/releases/latest)
 2. Run the installer (requires Administrator)
 3. Follow the setup wizard
 4. Launch from Start Menu or Desktop shortcut
 
 ### Option 2: Portable
-1. Download `BruteGamingMacros-v2.0.1-portable.zip` from [releases](https://github.com/epicseo/BruteGamingMacros/releases)
+1. Download `BruteGamingMacros-v2.1.0-portable.zip` from [releases](https://github.com/epicseo/BruteGamingMacros/releases)
 2. Extract to any folder
 3. Run `BruteGamingMacros.exe` as Administrator
 
@@ -115,7 +117,7 @@
 - **OS:** Windows 10/11 (64-bit)
 - **Framework:** .NET Framework 4.8.1 or higher
 - **Privileges:** Administrator (required for memory reading)
-- **Game:** Ragnarok Online (OsRO MR/HR/LR)
+- **Game:** Ragnarok Online (OsRO MR/HR)
 - **Disk Space:** 50-100 MB
 
 > **⚠️ Antivirus Warning:** This application uses legitimate Windows APIs (ReadProcessMemory, SendInput) that may trigger false positives.

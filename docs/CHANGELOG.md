@@ -8,12 +8,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
+- OsRO LR (Revo) server support (pending memory address configuration)
 - External JSON configuration for memory addresses
 - Pattern scanning for automatic address detection
-- Multi-language support
-- Command-line interface for profile management
-- RESTful API for remote control
-- Telemetry (opt-in) for crash reporting
+- Unit test framework setup
+- API documentation generation
+
+---
+
+## [2.1.0] - 2025-12-09
+
+### Added
+- GitHub Actions CI/CD pipeline for automated builds
+- Automated release workflow with portable ZIP and installer artifacts
+- Code quality workflow with security scanning
+- `.editorconfig` for consistent code formatting
+- Comprehensive 360-degree production readiness audit
+- SHA256 checksums for all release artifacts
+- Structured logging with Serilog (daily rotation, 7-day retention)
+- CrashReporter for detailed crash dumps and user-friendly error dialogs
+- ProductionLogger for production-grade logging
+
+### Changed
+- **BREAKING**: OsRO LR (Revo) build now throws `NotSupportedException` instead of silently failing
+- Updated version numbering to be consistent across all files
+- Improved README with accurate installation instructions
+- Updated installer copyright to 2025
+- Updated all dependencies to latest stable versions
+
+### Fixed
+- Version mismatch across AppConfig.cs, AssemblyInfo.cs, README.md, and installer
+- Broken image path in README.md (XX -> applogo.png)
+- LR build silently failing with all-zero memory addresses (now fails explicitly)
+
+### Security
+- Fixed known vulnerabilities in Newtonsoft.Json
+- Updated all dependencies to latest stable versions
+- Added sensitive data scanning in CI/CD pipeline
+- Added dependency vulnerability checking
+
+---
 
 ## [2.0.1] - 2025-11-12
 
@@ -169,29 +203,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Release Date | Type | Highlights |
 |---------|--------------|------|------------|
+| 2.1.0 | 2025-12-09 | Minor | Production audit, version consistency, LR build fix |
 | 2.0.1 | 2025-11-12 | Patch | Production deployment infrastructure |
-| 2.0.0 | 2024-XX-XX | Major | Complete rewrite, superior performance |
+| 2.0.0 | 2025-10-21 | Major | Complete rewrite, superior performance |
 | 1.0.0 | (Legacy) | Initial | Fork from TalesTools |
 
 ---
 
 ## Future Roadmap
 
-### v2.1.0 (Planned Q1 2025)
+### v2.2.0 (Planned Q1 2025)
 - [ ] External configuration for memory addresses
 - [ ] Automatic address pattern scanning
-- [ ] Improved auto-update with rollback
-- [ ] Enhanced crash reporting
+- [ ] OsRO LR (Revo) server support
+- [ ] Unit test framework and initial test coverage
 - [ ] Performance metrics dashboard
 
-### v2.2.0 (Planned Q2 2025)
+### v2.3.0 (Planned Q2 2025)
 - [ ] Multi-language support (EN, FR, ES, PT)
 - [ ] Plugin system for extensibility
 - [ ] RESTful API for remote control
 - [ ] Web-based dashboard
 - [ ] Advanced scripting support
 
-### v3.0.0 (Planned Q3 2025)
+### v3.0.0 (Planned Q4 2025)
 - [ ] Support for additional game servers
 - [ ] AI-based behavior randomization
 - [ ] Cloud sync for profiles
@@ -236,8 +271,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for:
 
 3. **Create Git tag:**
    ```bash
-   git tag -a v2.0.1 -m "Release v2.0.1"
-   git push origin v2.0.1
+   git tag -a v2.1.0 -m "Release v2.1.0"
+   git push origin v2.1.0
    ```
 
 4. **GitHub Actions:**

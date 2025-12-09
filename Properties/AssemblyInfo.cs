@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Brute Gaming")]
 [assembly: AssemblyProduct("Brute Gaming Macros")]
-[assembly: AssemblyCopyright("Copyright © 2025 Brute Gaming | Based on 4RTools by torrq | MIT License")]
+[assembly: AssemblyCopyright("Copyright © 2025 Brute Gaming | MIT License")]
 [assembly: AssemblyTrademark("Brute Gaming™")]
 [assembly: AssemblyCulture("")]
 
@@ -32,6 +32,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or default to Build and Revision Numbers
 // using the "*" as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyVersion("2.1.0.0")]
+[assembly: AssemblyFileVersion("2.1.0.0")]
 [assembly: NeutralResourcesLanguage("en")]

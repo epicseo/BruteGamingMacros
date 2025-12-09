@@ -7,19 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Planned
+- OsRO LR (Revo) server support (pending memory address configuration)
+- Unit test framework setup
+- API documentation generation
+
+---
+
+## [2.1.0] - 2025-12-09
+
 ### Added
 - GitHub Actions CI/CD pipeline for automated builds
-- Automated release workflow with .exe artifacts
-- NUnit testing framework
-- Unit tests for core engine components
-- Input validation for profile JSON files
-- CHANGELOG.md for version tracking
-- DEPLOYMENT.md for build and release instructions
-- CONTRIBUTING.md developer guide
-- ARCHITECTURE.md system design documentation
-- Dependency security updates
+- Automated release workflow with portable ZIP and installer artifacts
+- Code quality workflow with security scanning
+- `.editorconfig` for consistent code formatting
+- Comprehensive 360-degree production readiness audit
+- SHA256 checksums for all release artifacts
+- Structured logging with Serilog (daily rotation, 7-day retention)
+- CrashReporter for detailed crash dumps and user-friendly error dialogs
+- ProductionLogger for production-grade logging
 
 ### Changed
+- **BREAKING**: OsRO LR (Revo) build now throws `NotSupportedException` instead of silently failing
+- Updated version numbering to be consistent across all files
+- Improved README with accurate installation instructions
+- Updated installer copyright to 2025
 - Updated Aspose.Zip from v22.10.0 to v25.5.0 (security & features)
 - Updated Newtonsoft.Json from v13.0.1 to v13.0.3 (security patches)
 - Updated Costura.Fody from v5.7.0 to v6.0.0
@@ -27,10 +39,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated NETStandard.Library from v1.6.1 to v2.0.3
 - Updated Microsoft.NETCore.Platforms from v1.1.0 to v7.0.4
 
+### Fixed
+- Version mismatch across AppConfig.cs, AssemblyInfo.cs, README.md, and installer
+- Broken image path in README.md (XX -> applogo.png)
+- LR build silently failing with all-zero memory addresses (now fails explicitly)
+
 ### Security
 - Fixed known vulnerabilities in Newtonsoft.Json
-- Updated dependencies to latest stable versions
-- Added JSON schema validation for profile files
+- Updated all dependencies to latest stable versions
+- Added sensitive data scanning in CI/CD pipeline
+- Added dependency vulnerability checking
+
+### Documentation
+- Updated README with v2.1.0 references
+- Added clear note about LR server support status
+- Comprehensive CHANGELOG following Keep a Changelog format
+
+---
 
 ## [2.0.0] - 2025-10-21
 
@@ -123,5 +148,6 @@ Previous versions under the 4RTools name. See original repository for history.
 
 ## Links
 
-[Unreleased]: https://github.com/epicseo/BruteGamingMacros/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/epicseo/BruteGamingMacros/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/epicseo/BruteGamingMacros/releases/tag/v2.1.0
 [2.0.0]: https://github.com/epicseo/BruteGamingMacros/releases/tag/v2.0.0

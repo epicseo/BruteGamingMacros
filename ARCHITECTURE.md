@@ -724,8 +724,8 @@ CrashReporter.SendReport(exception);
 - **Test Coverage**: 0% (needs improvement)
 
 ### Technical Debt
-1. No automated tests
-2. Some legacy code from 4RTools era
+1. ~~No automated tests~~ (Added in v2.1.0)
+2. Some legacy code from earlier versions
 3. Manual resource management (some areas)
 4. Limited error recovery
 

@@ -2,7 +2,7 @@
 ; This script creates a professional Windows installer
 
 !define PRODUCT_NAME "Brute Gaming Macros"
-!define PRODUCT_VERSION "2.0.1"
+!define PRODUCT_VERSION "2.1.0"
 !define PRODUCT_PUBLISHER "Epic SEO"
 !define PRODUCT_WEB_SITE "https://github.com/epicseo/BruteGamingMacros"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -27,11 +27,11 @@ SetCompressor /SOLID lzma
 SetCompressorDictSize 32
 
 ; Version information
-VIProductVersion "2.0.1.0"
+VIProductVersion "2.1.0.0"
 VIAddVersionKey "ProductName" "${PRODUCT_NAME}"
 VIAddVersionKey "ProductVersion" "${PRODUCT_VERSION}"
 VIAddVersionKey "CompanyName" "${PRODUCT_PUBLISHER}"
-VIAddVersionKey "LegalCopyright" "© 2024 ${PRODUCT_PUBLISHER}. MIT License."
+VIAddVersionKey "LegalCopyright" "© 2025 ${PRODUCT_PUBLISHER}. MIT License."
 VIAddVersionKey "FileDescription" "${PRODUCT_NAME} Installer"
 VIAddVersionKey "FileVersion" "${PRODUCT_VERSION}"
 
