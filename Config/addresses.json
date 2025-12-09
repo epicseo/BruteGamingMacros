@@ -1,0 +1,107 @@
+{
+  "$schema": "./addresses.schema.json",
+  "version": "2.1.0",
+  "lastUpdated": "2025-12-09",
+  "description": "Memory addresses for Ragnarok Online private servers. Update these when game client updates break functionality.",
+  "servers": {
+    "MR": {
+      "name": "OsRO Midrate",
+      "description": "OsRO Midrate Server",
+      "website": "https://osro.mr",
+      "windowClass": "Oldschool RO - Midrate | www.osro.mr",
+      "addresses": {
+        "hp": "00E8F434",
+        "sp": "00E8F438",
+        "maxHp": "00E8F43C",
+        "maxSp": "00E8F440",
+        "name": "00E91C00",
+        "map": "00E8ABD4",
+        "online": "00E8A928",
+        "baseLevel": "00000000",
+        "jobLevel": "00000000",
+        "statusBuffer": "00000000"
+      },
+      "offsets": {
+        "statusBufferOffset": 0,
+        "statusBufferSize": 108
+      },
+      "verified": true,
+      "verifiedDate": "2025-12-09"
+    },
+    "HR": {
+      "name": "OsRO Highrate",
+      "description": "OsRO Highrate Server",
+      "website": "https://osro.gg",
+      "windowClass": "Oldschool RO | www.osro.gg",
+      "addresses": {
+        "hp": "010DCE10",
+        "sp": "010DCE14",
+        "maxHp": "010DCE18",
+        "maxSp": "010DCE1C",
+        "name": "010DF5D8",
+        "map": "010D856C",
+        "online": "010D83C7",
+        "baseLevel": "00000000",
+        "jobLevel": "00000000",
+        "statusBuffer": "00000000"
+      },
+      "offsets": {
+        "statusBufferOffset": 0,
+        "statusBufferSize": 108
+      },
+      "verified": true,
+      "verifiedDate": "2025-12-09"
+    },
+    "LR": {
+      "name": "OsRO Revo",
+      "description": "OsRO Revo (Lowrate) Server - ADDRESSES NEED CONFIGURATION",
+      "website": "https://osro-revo.gg",
+      "windowClass": "Oldschool RO | Revo",
+      "addresses": {
+        "hp": "00000000",
+        "sp": "00000000",
+        "maxHp": "00000000",
+        "maxSp": "00000000",
+        "name": "00000000",
+        "map": "00000000",
+        "online": "00000000",
+        "baseLevel": "00000000",
+        "jobLevel": "00000000",
+        "statusBuffer": "00000000"
+      },
+      "offsets": {
+        "statusBufferOffset": 0,
+        "statusBufferSize": 108
+      },
+      "verified": false,
+      "verifiedDate": null,
+      "notes": "Memory addresses not yet discovered. Use Cheat Engine or Pattern Scanner to find correct addresses. See docs/CONTRIBUTING.md for instructions."
+    }
+  },
+  "patternSignatures": {
+    "description": "AOB patterns for auto-detection of addresses when game updates",
+    "hp": {
+      "pattern": "",
+      "offset": 0,
+      "notes": "Pattern signature for HP address auto-detection"
+    },
+    "name": {
+      "pattern": "",
+      "offset": 0,
+      "notes": "Pattern signature for character name address"
+    }
+  },
+  "instructions": {
+    "howToUpdate": [
+      "1. Launch the game client and log into a character",
+      "2. Open Cheat Engine and attach to the game process",
+      "3. Search for your current HP value (exact value scan)",
+      "4. Take damage and search for the new HP value",
+      "5. Repeat until you find the correct address",
+      "6. The address should be stable across game sessions",
+      "7. Update this file with the new address",
+      "8. Set 'verified' to true and update 'verifiedDate'"
+    ],
+    "addressFormat": "Hexadecimal without '0x' prefix (e.g., '00E8F434')"
+  }
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BruteGamingMacros.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -39,6 +40,7 @@ namespace BruteGamingMacros.Core.Utils
         public static string ConfigFolder = "Config\\";
         public static string ConfigFile = ConfigFolder + "config.json";
         public static string ServersFile = ConfigFolder + "servers.json";
+        public static string AddressesFile = ConfigFolder + "addresses.json";
         public static string CitiesFile = ConfigFolder + "cities.json";
         public static string DebugLogFile = "debug.log";
 
@@ -47,52 +49,80 @@ namespace BruteGamingMacros.Core.Utils
         public static string WindowClassHR = "Oldschool RO | www.osro.gg";
         public static string WindowClassLR = "Oldschool RO | Revo";  // Updated from "dunno"
 
+        /// <summary>
+        /// Gets server addresses from runtime configuration (Config/addresses.json).
+        /// Falls back to hardcoded values if config file is missing or invalid.
+        /// LR addresses may be unconfigured (all zeros) - use HasValidAddresses() to check.
+        /// </summary>
         public static List<dynamic> DefaultServers
         {
             get
             {
-                switch (ServerMode)
-                {
-                    case 0: // Mid‑rate
-                        return new List<dynamic>
+                // Use AddressLoader for runtime configuration
+                return AddressLoader.GetServerAddresses(ServerMode);
+            }
+        }
+
+        /// <summary>
+        /// Checks if the current server mode has valid (non-zero) memory addresses configured.
+        /// </summary>
+        public static bool HasValidAddresses => AddressLoader.HasValidAddresses(ServerMode);
+
+        /// <summary>
+        /// Gets the current server configuration including all address details.
+        /// </summary>
+        public static ServerAddressConfig CurrentServerConfig => AddressLoader.GetServerConfig(ServerMode);
+
+        // Hardcoded fallback addresses (used when AddressLoader fails)
+        private static List<dynamic> GetHardcodedServers(int mode)
+        {
+            switch (mode)
+            {
+                case 0: // Mid-rate
+                    return new List<dynamic>
+                    {
+                        new
                         {
-                            new
-                            {
-                                name          = "OsRO Midrate",
-                                description   = "OsRO Midrate",
-                                hpAddress     = "00E8F434",
-                                nameAddress   = "00E91C00",
-                                mapAddress    = "00E8ABD4",
-                                onlineAddress = "00E8A928"
-                            }
-                        };
+                            name          = "OsRO Midrate",
+                            description   = "OsRO Midrate",
+                            hpAddress     = "00E8F434",
+                            nameAddress   = "00E91C00",
+                            mapAddress    = "00E8ABD4",
+                            onlineAddress = "00E8A928"
+                        }
+                    };
 
-                    case 1: // High‑rate
-                        return new List<dynamic>
+                case 1: // High-rate
+                    return new List<dynamic>
+                    {
+                        new
                         {
-                            new
-                            {
-                                name          = "OSRO",
-                                description   = "OsRO Highrate",
-                                hpAddress     = "010DCE10",
-                                nameAddress   = "010DF5D8",
-                                mapAddress    = "010D856C",
-                                onlineAddress = "010D83C7"
-                            }
-                        };
+                            name          = "OSRO",
+                            description   = "OsRO Highrate",
+                            hpAddress     = "010DCE10",
+                            nameAddress   = "010DF5D8",
+                            mapAddress    = "010D856C",
+                            onlineAddress = "010D83C7"
+                        }
+                    };
 
-                    case 2: // Low-rate - UNSUPPORTED: Memory addresses not yet configured
-                        // WARNING: LR build is currently unsupported. Memory addresses need to be
-                        // discovered using tools like Cheat Engine before this build can function.
-                        // See docs/CONTRIBUTING.md for instructions on finding memory addresses.
-                        throw new NotSupportedException(
-                            "OsRO Revo (Low-rate) is not yet supported. " +
-                            "Memory addresses have not been configured for this server. " +
-                            "Please use the MR or HR build, or contribute the correct addresses.");
+                case 2: // Low-rate - Addresses not yet configured
+                    // Returns placeholder addresses - application should check HasValidAddresses
+                    return new List<dynamic>
+                    {
+                        new
+                        {
+                            name          = "OsRO Revo",
+                            description   = "OsRO Revo (Lowrate) - Configure addresses in Config/addresses.json",
+                            hpAddress     = "00000000",
+                            nameAddress   = "00000000",
+                            mapAddress    = "00000000",
+                            onlineAddress = "00000000"
+                        }
+                    };
 
-                    default:
-                        throw new InvalidOperationException($"Unsupported ServerMode value: {ServerMode}");
-                }
+                default:
+                    throw new InvalidOperationException($"Unsupported ServerMode value: {mode}");
             }
         }
 

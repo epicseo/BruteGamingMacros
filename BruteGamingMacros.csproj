@@ -333,6 +333,7 @@
     <Compile Include="Forms\TransferHelperForm.Designer.cs">
       <DependentUpon>TransferHelperForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\AddressConfiguration.cs" />
     <Compile Include="Model\SkillSpammer.cs" />
     <Compile Include="Model\ATKDEF.cs" />
     <Compile Include="Model\AutobuffSkill.cs" />
@@ -381,6 +382,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Icons.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\AddressLoader.cs" />
     <Compile Include="Utils\AmmoSwapHandler.cs" />
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Constants.cs" />
@@ -438,6 +440,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\addresses.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="applogo.ico" />
     <Content Include="assets\image\icon\atkdef\armor_body.png" />
     <Content Include="assets\image\icon\atkdef\armor_head.png" />
