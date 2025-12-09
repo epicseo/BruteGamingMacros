@@ -51,7 +51,7 @@ jobs:
         if (Test-Path $exePath) {
           $size = [math]::Round((Get-Item $exePath).Length / 1KB, 2)
           Write-Host "✓ Build successful: ${{ matrix.configuration }}" -ForegroundColor Green
-          Write-Host "  Executable: $exePath (${size} KB)" -ForegroundColor Gray
+          Write-Host "  Executable: $exePath - ${size} KB" -ForegroundColor Gray
         } else {
           if ("${{ matrix.configuration }}" -eq "Release") {
             Write-Error "✗ Main Release build failed - executable not found!"
