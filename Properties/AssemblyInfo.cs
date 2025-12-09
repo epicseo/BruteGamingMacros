@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Brute Gaming")]
 [assembly: AssemblyProduct("Brute Gaming Macros")]
-[assembly: AssemblyCopyright("Copyright © 2025 Brute Gaming | Based on 4RTools by torrq | MIT License")]
+[assembly: AssemblyCopyright("Copyright © 2025 Brute Gaming | MIT License")]
 [assembly: AssemblyTrademark("Brute Gaming™")]
 [assembly: AssemblyCulture("")]
 
