@@ -71,40 +71,92 @@ jobs:
         if-no-files-found: error
         retention-days: 7
 
+  test:
+    name: Run Tests
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+
+    - name: Restore main project
+      run: nuget restore BruteGamingMacros.sln
+
+    - name: Build main project
+      run: msbuild BruteGamingMacros.sln /p:Configuration=Release /p:Platform="Any CPU" /t:Build /v:minimal /nologo
+
+    - name: Restore test project
+      run: dotnet restore Tests/BruteGamingMacros.Tests.csproj
+
+    - name: Run tests
+      run: dotnet test Tests/BruteGamingMacros.Tests.csproj --configuration Release --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      continue-on-error: true
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: Tests/TestResults/
+        if-no-files-found: ignore
+        retention-days: 7
+
   build-summary:
     name: Build Summary
     runs-on: windows-latest
-    needs: build
+    needs: [build, test]
     if: always()
 
     steps:
     - name: Check build results
       shell: powershell
       run: |
-        $result = "${{ needs.build.result }}"
+        $buildResult = "${{ needs.build.result }}"
+        $testResult = "${{ needs.test.result }}"
 
         Write-Host ""
         Write-Host "=" * 60 -ForegroundColor Cyan
-        Write-Host "BUILD SUMMARY" -ForegroundColor Cyan
+        Write-Host "BUILD & TEST SUMMARY" -ForegroundColor Cyan
         Write-Host "=" * 60 -ForegroundColor Cyan
         Write-Host ""
 
-        if ($result -eq "success") {
+        # Build status
+        if ($buildResult -eq "success") {
           Write-Host "✓ All configurations built successfully" -ForegroundColor Green
-          Write-Host ""
-          Write-Host "Main build (Release): SUCCESS" -ForegroundColor Green
-          Write-Host "Optional builds: SUCCESS" -ForegroundColor Green
-        } elseif ($result -eq "failure") {
-          Write-Host "Build Status: PARTIAL SUCCESS" -ForegroundColor Yellow
-          Write-Host ""
-          Write-Host "Main build (Release): SUCCESS" -ForegroundColor Green
-          Write-Host "Optional builds: Some failed (expected)" -ForegroundColor Yellow
+          Write-Host "  Main build (Release): SUCCESS" -ForegroundColor Green
+          Write-Host "  Optional builds: SUCCESS" -ForegroundColor Green
+        } elseif ($buildResult -eq "failure") {
+          Write-Host "⚠ Build Status: PARTIAL SUCCESS" -ForegroundColor Yellow
+          Write-Host "  Main build (Release): SUCCESS" -ForegroundColor Green
+          Write-Host "  Optional builds: Some failed (expected)" -ForegroundColor Yellow
           Write-Host ""
           Write-Host "Note: Optional configurations (MR/HR) may fail if memory addresses change." -ForegroundColor Gray
           Write-Host "LR build is EXPECTED to fail (memory addresses not configured)." -ForegroundColor Gray
-          Write-Host "Only the main Release configuration must succeed." -ForegroundColor Gray
         } else {
-          Write-Host "Build Status: $result" -ForegroundColor Cyan
+          Write-Host "Build Status: $buildResult" -ForegroundColor Cyan
+        }
+
+        Write-Host ""
+
+        # Test status
+        if ($testResult -eq "success") {
+          Write-Host "✓ All tests passed" -ForegroundColor Green
+        } elseif ($testResult -eq "failure") {
+          Write-Host "⚠ Some tests failed - check test results artifact" -ForegroundColor Yellow
+        } else {
+          Write-Host "Tests: $testResult" -ForegroundColor Cyan
         }
 
         Write-Host ""
