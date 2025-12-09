@@ -50,14 +50,14 @@ jobs:
 
         if (Test-Path $exePath) {
           $size = [math]::Round((Get-Item $exePath).Length / 1KB, 2)
-          Write-Host "✓ Build successful: ${{ matrix.configuration }}" -ForegroundColor Green
+          Write-Host "[OK] Build successful: ${{ matrix.configuration }}" -ForegroundColor Green
           Write-Host "  Executable: $exePath - ${size} KB" -ForegroundColor Gray
         } else {
           if ("${{ matrix.configuration }}" -eq "Release") {
-            Write-Error "✗ Main Release build failed - executable not found!"
+            Write-Error "[ERROR] Main Release build failed - executable not found!"
             exit 1
           } else {
-            Write-Host "⚠ Optional build ${{ matrix.configuration }} failed" -ForegroundColor Yellow
+            Write-Host "[WARNING] Optional build ${{ matrix.configuration }} failed" -ForegroundColor Yellow
             exit 0
           }
         }
@@ -134,11 +134,11 @@ jobs:
 
         # Build status
         if ($buildResult -eq "success") {
-          Write-Host "✓ All configurations built successfully" -ForegroundColor Green
+          Write-Host "[OK] All configurations built successfully" -ForegroundColor Green
           Write-Host "  Main build (Release): SUCCESS" -ForegroundColor Green
           Write-Host "  Optional builds: SUCCESS" -ForegroundColor Green
         } elseif ($buildResult -eq "failure") {
-          Write-Host "⚠ Build Status: PARTIAL SUCCESS" -ForegroundColor Yellow
+          Write-Host "[WARNING] Build Status: PARTIAL SUCCESS" -ForegroundColor Yellow
           Write-Host "  Main build (Release): SUCCESS" -ForegroundColor Green
           Write-Host "  Optional builds: Some failed (expected)" -ForegroundColor Yellow
           Write-Host ""
@@ -152,9 +152,9 @@ jobs:
 
         # Test status
         if ($testResult -eq "success") {
-          Write-Host "✓ All tests passed" -ForegroundColor Green
+          Write-Host "[OK] All tests passed" -ForegroundColor Green
         } elseif ($testResult -eq "failure") {
-          Write-Host "⚠ Some tests failed - check test results artifact" -ForegroundColor Yellow
+          Write-Host "[WARNING] Some tests failed - check test results artifact" -ForegroundColor Yellow
         } else {
           Write-Host "Tests: $testResult" -ForegroundColor Cyan
         }
