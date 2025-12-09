@@ -10,13 +10,11 @@ namespace BruteGamingMacros.Tests
     {
         private ThreadRunner _runner;
         private int _executionCount;
-        private volatile bool _shouldStop;
 
         [SetUp]
         public void Setup()
         {
             _executionCount = 0;
-            _shouldStop = false;
         }
 
         [TearDown]
@@ -27,24 +25,23 @@ namespace BruteGamingMacros.Tests
         }
 
         [Test]
-        public void Run_ExecutesCallback()
+        public void Start_ExecutesCallback()
         {
             // Arrange
             var executed = new ManualResetEventSlim(false);
 
-            _runner = new ThreadRunner(() =>
+            _runner = new ThreadRunner((delay) =>
             {
                 _executionCount++;
                 if (_executionCount >= 3)
                 {
                     executed.Set();
-                    return false; // Stop after 3 executions
                 }
-                return true;
-            }, 10);
+                return delay; // Return delay as-is
+            });
 
             // Act
-            _runner.Run();
+            ThreadRunner.Start(_runner);
             bool signaled = executed.Wait(TimeSpan.FromSeconds(2));
 
             // Assert
@@ -56,15 +53,15 @@ namespace BruteGamingMacros.Tests
         public void Terminate_StopsThread()
         {
             // Arrange
-            _runner = new ThreadRunner(() =>
+            _runner = new ThreadRunner((delay) =>
             {
                 _executionCount++;
                 Thread.Sleep(10);
-                return true;
-            }, 10);
+                return delay;
+            });
 
             // Act
-            _runner.Run();
+            ThreadRunner.Start(_runner);
             Thread.Sleep(100); // Let it run a bit
             _runner.Terminate();
             int countAfterTerminate = _executionCount;
@@ -76,78 +73,60 @@ namespace BruteGamingMacros.Tests
         }
 
         [Test]
-        public void Suspend_PausesExecution()
+        public void Stop_PausesExecution()
         {
             // Arrange
-            _runner = new ThreadRunner(() =>
+            _runner = new ThreadRunner((delay) =>
             {
                 _executionCount++;
                 Thread.Sleep(10);
-                return true;
-            }, 10);
+                return delay;
+            });
 
             // Act
-            _runner.Run();
+            ThreadRunner.Start(_runner);
             Thread.Sleep(100); // Let it run
-            _runner.Suspend();
-            int countAtSuspend = _executionCount;
-            Thread.Sleep(100); // Wait while suspended
-            int countAfterSuspend = _executionCount;
+            ThreadRunner.Stop(_runner);
+            int countAtStop = _executionCount;
+            Thread.Sleep(100); // Wait while stopped
+            int countAfterStop = _executionCount;
 
-            // Assert - count should not increase while suspended
-            Assert.LessOrEqual(countAfterSuspend - countAtSuspend, 1,
-                "Thread should pause during Suspend()");
+            // Assert - count should not increase while stopped
+            Assert.LessOrEqual(countAfterStop - countAtStop, 1,
+                "Thread should pause during Stop()");
         }
 
         [Test]
-        public void Resume_ContinuesAfterSuspend()
+        public void Start_ContinuesAfterStop()
         {
             // Arrange
-            _runner = new ThreadRunner(() =>
+            _runner = new ThreadRunner((delay) =>
             {
                 _executionCount++;
                 Thread.Sleep(10);
-                return true;
-            }, 10);
+                return delay;
+            });
 
             // Act
-            _runner.Run();
+            ThreadRunner.Start(_runner);
             Thread.Sleep(50);
-            _runner.Suspend();
-            int countAtSuspend = _executionCount;
+            ThreadRunner.Stop(_runner);
+            int countAtStop = _executionCount;
             Thread.Sleep(50);
-            _runner.Resume();
+            ThreadRunner.Start(_runner); // Resume by calling Start again
             Thread.Sleep(100); // Let it run after resume
 
             // Assert - count should increase after resume
-            Assert.Greater(_executionCount, countAtSuspend,
-                "Thread should continue after Resume()");
-        }
-
-        [Test]
-        public void CallbackReturningFalse_StopsThread()
-        {
-            // Arrange
-            _runner = new ThreadRunner(() =>
-            {
-                _executionCount++;
-                return _executionCount < 5; // Stop after 5 executions
-            }, 10);
-
-            // Act
-            _runner.Run();
-            Thread.Sleep(500); // Wait for completion
-
-            // Assert
-            Assert.AreEqual(5, _executionCount, "Thread should stop after callback returns false");
+            Assert.Greater(_executionCount, countAtStop,
+                "Thread should continue after Start() following Stop()");
         }
 
         [Test]
         public void MultipleTerminateCalls_DoesNotThrow()
         {
             // Arrange
-            _runner = new ThreadRunner(() => true, 100);
-            _runner.Run();
+            _runner = new ThreadRunner((delay) => delay);
+            ThreadRunner.Start(_runner);
             Thread.Sleep(50);
 
             // Act & Assert
@@ -160,31 +139,31 @@ namespace BruteGamingMacros.Tests
         }
 
         [Test]
-        public void TerminateBeforeRun_DoesNotThrow()
+        public void TerminateBeforeStart_DoesNotThrow()
         {
             // Arrange
-            _runner = new ThreadRunner(() => true, 100);
+            _runner = new ThreadRunner((delay) => delay);
 
             // Act & Assert
             Assert.DoesNotThrow(() => _runner.Terminate());
         }
 
         [Test]
-        public void Constructor_SetsDelayCorrectly()
+        public void Constructor_CreatesInstance()
         {
             // Arrange & Act
-            _runner = new ThreadRunner(() => false, 500);
+            _runner = new ThreadRunner((delay) => delay);
 
-            // Assert - we can't directly check delay, but we can verify it doesn't throw
+            // Assert - we can't directly check internal state, but we can verify it doesn't throw
             Assert.IsNotNull(_runner);
         }
 
         [Test]
-        public void Run_WithException_ContinuesExecution()
+        public void Start_WithException_ContinuesExecution()
         {
             // Arrange
             int exceptionCount = 0;
-            _runner = new ThreadRunner(() =>
+            _runner = new ThreadRunner((delay) =>
             {
                 _executionCount++;
                 if (_executionCount == 2)
@@ -192,16 +171,30 @@ namespace BruteGamingMacros.Tests
                     exceptionCount++;
                     throw new InvalidOperationException("Test exception");
                 }
-                return _executionCount < 5;
-            }, 10);
+                return delay;
+            });
 
             // Act
-            _runner.Run();
+            ThreadRunner.Start(_runner);
             Thread.Sleep(500);
 
             // Assert - thread should continue despite exception
             Assert.GreaterOrEqual(_executionCount, 5, "Thread should continue after exception");
             Assert.AreEqual(1, exceptionCount, "Exception should have been thrown once");
+        }
+
+        [Test]
+        public void Stop_OnNullRunner_DoesNotThrow()
+        {
+            // Act & Assert
+            Assert.DoesNotThrow(() => ThreadRunner.Stop(null));
+        }
+
+        [Test]
+        public void Start_OnNullRunner_DoesNotThrow()
+        {
+            // Act & Assert
+            Assert.DoesNotThrow(() => ThreadRunner.Start(null));
         }
     }
 }
