@@ -391,5 +391,80 @@ namespace BruteGamingMacros.UI.Forms
         {
 
         }
+
+        private void btnScanAddresses_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Find RO process
+                var roProcesses = System.Diagnostics.Process.GetProcessesByName("ragexe");
+                if (roProcesses.Length == 0)
+                {
+                    roProcesses = System.Diagnostics.Process.GetProcessesByName("ragexe_patched");
+                }
+                if (roProcesses.Length == 0)
+                {
+                    roProcesses = System.Diagnostics.Process.GetProcessesByName("Ragnarok");
+                }
+
+                if (roProcesses.Length == 0)
+                {
+                    MessageBox.Show(
+                        "No Ragnarok Online process found.\n\n" +
+                        "Please start the game client first, then try again.\n\n" +
+                        "Supported process names: ragexe, ragexe_patched, Ragnarok",
+                        "Process Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var process = roProcesses[0];
+
+                using (var scanner = new PatternScanner())
+                {
+                    if (!scanner.Attach(process))
+                    {
+                        MessageBox.Show(
+                            "Failed to attach to process.\n\n" +
+                            "Try running as Administrator.",
+                            "Attach Failed",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    var results = new System.Text.StringBuilder();
+                    results.AppendLine("Pattern Scanner Results");
+                    results.AppendLine("=======================");
+                    results.AppendLine($"Process: {process.ProcessName} (PID: {process.Id})");
+                    results.AppendLine($"Base Address: 0x{process.MainModule?.BaseAddress.ToInt64():X8}");
+                    results.AppendLine();
+                    results.AppendLine("Note: Pattern signatures need to be configured");
+                    results.AppendLine("for your specific game client version.");
+                    results.AppendLine();
+                    results.AppendLine("See docs/ADDRESS_DISCOVERY.md for instructions");
+                    results.AppendLine("on finding addresses using Cheat Engine.");
+                    results.AppendLine();
+                    results.AppendLine("Current Server Mode: " + AppConfig.ServerMode);
+                    results.AppendLine("Has Valid Addresses: " + AppConfig.HasValidAddresses);
+
+                    MessageBox.Show(
+                        results.ToString(),
+                        "Address Scanner",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugLogger.Error(ex, "Error in PatternScanner");
+                MessageBox.Show(
+                    $"Error scanning addresses:\n{ex.Message}",
+                    "Scan Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
     }
 }

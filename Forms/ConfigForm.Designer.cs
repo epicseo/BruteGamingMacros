@@ -59,6 +59,7 @@ namespace BruteGamingMacros.UI.Forms
             this.toolTipWeight50 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipWeight90 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipSwitchAmmoCB = new System.Windows.Forms.ToolTip(this.components);
+            this.btnScanAddresses = new System.Windows.Forms.Button();
             this.ammoTrigger = new System.Windows.Forms.TextBox();
             this.ammoTriggerLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -268,9 +269,22 @@ namespace BruteGamingMacros.UI.Forms
             this.toolTipDebugMode.SetToolTip(this.chkDebugMode, "Toggles debug mode, which logs info to a text file");
             this.chkDebugMode.UseVisualStyleBackColor = true;
             this.chkDebugMode.CheckedChanged += new System.EventHandler(this.chkDebugMode_CheckedChanged);
-            // 
+            //
+            // btnScanAddresses
+            //
+            this.btnScanAddresses.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnScanAddresses.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanAddresses.Location = new System.Drawing.Point(6, 19);
+            this.btnScanAddresses.Name = "btnScanAddresses";
+            this.btnScanAddresses.Size = new System.Drawing.Size(82, 23);
+            this.btnScanAddresses.TabIndex = 321;
+            this.btnScanAddresses.Text = "Scan Addrs";
+            this.btnScanAddresses.UseVisualStyleBackColor = true;
+            this.btnScanAddresses.Click += new System.EventHandler(this.btnScanAddresses_Click);
+            //
             // groupGlobalSettings
-            // 
+            //
+            this.groupGlobalSettings.Controls.Add(this.btnScanAddresses);
             this.groupGlobalSettings.Controls.Add(this.chkDebugMode);
             this.groupGlobalSettings.Location = new System.Drawing.Point(309, 367);
             this.groupGlobalSettings.Name = "groupGlobalSettings";
@@ -396,5 +410,6 @@ namespace BruteGamingMacros.UI.Forms
         private Label label3;
         private Label ammoTriggerLabel;
         private ToolTip toolTipAmmoTrigger;
+        private Button btnScanAddresses;
     }
 }
