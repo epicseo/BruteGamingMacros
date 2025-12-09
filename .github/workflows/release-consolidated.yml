@@ -67,7 +67,10 @@ jobs:
       continue-on-error: true
       run: msbuild BruteGamingMacros.sln /p:Configuration=Release-HR /p:Platform="Any CPU" /t:Rebuild /v:minimal /nologo
 
-    - name: Build Release-LR (Lowrate)
+    - name: Build Release-LR (Lowrate) - EXPECTED TO FAIL
+      # NOTE: LR build will fail because memory addresses are not configured.
+      # This is expected behavior. LR support is planned for a future release.
+      # See AppConfig.cs for details.
       continue-on-error: true
       run: msbuild BruteGamingMacros.sln /p:Configuration=Release-LR /p:Platform="Any CPU" /t:Rebuild /v:minimal /nologo
 

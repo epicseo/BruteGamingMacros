@@ -100,7 +100,8 @@ jobs:
           Write-Host "Main build (Release): SUCCESS" -ForegroundColor Green
           Write-Host "Optional builds: Some failed (expected)" -ForegroundColor Yellow
           Write-Host ""
-          Write-Host "Note: Optional configurations (MR/HR/LR) are allowed to fail." -ForegroundColor Gray
+          Write-Host "Note: Optional configurations (MR/HR) may fail if memory addresses change." -ForegroundColor Gray
+          Write-Host "LR build is EXPECTED to fail (memory addresses not configured)." -ForegroundColor Gray
           Write-Host "Only the main Release configuration must succeed." -ForegroundColor Gray
         } else {
           Write-Host "Build Status: $result" -ForegroundColor Cyan

@@ -6,9 +6,9 @@ namespace BruteGamingMacros.Core.Utils
 {
     public class AppConfig
     {
-        // === BRUTE GAMING MACROS v2.0.0 ===
+        // === BRUTE GAMING MACROS v2.1.0 ===
         public static string Name = "Brute Gaming Macros";
-        public static string Version = "v2.0.0";
+        public static string Version = "v2.1.0";
         public static string Tagline = "The Ultimate Gaming Automation Suite";
 
 #if MR_BUILD
@@ -81,19 +81,14 @@ namespace BruteGamingMacros.Core.Utils
                             }
                         };
 
-                    case 2: // Low-rate
-                        return new List<dynamic>
-                        {
-                            new
-                            {
-                                name          = "OsRO Revo",
-                                description   = "OsRO Revo (Lowrate)",
-                                hpAddress     = "00000000",
-                                nameAddress   = "00000000",
-                                mapAddress    = "00000000",
-                                onlineAddress = "00000000"
-                            }
-                        };
+                    case 2: // Low-rate - UNSUPPORTED: Memory addresses not yet configured
+                        // WARNING: LR build is currently unsupported. Memory addresses need to be
+                        // discovered using tools like Cheat Engine before this build can function.
+                        // See docs/CONTRIBUTING.md for instructions on finding memory addresses.
+                        throw new NotSupportedException(
+                            "OsRO Revo (Low-rate) is not yet supported. " +
+                            "Memory addresses have not been configured for this server. " +
+                            "Please use the MR or HR build, or contribute the correct addresses.");
 
                     default:
                         throw new InvalidOperationException($"Unsupported ServerMode value: {ServerMode}");
