@@ -48,14 +48,12 @@ namespace BruteGamingMacros.Core.Utils
                         .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                         .MinimumLevel.Override("System", LogEventLevel.Warning)
                         .Enrich.FromLogContext()
-                        .Enrich.WithThreadId()
-                        .Enrich.WithMachineName()
                         .Enrich.WithProperty("AppVersion", version)
                         .WriteTo.File(
                             logPath,
                             rollingInterval: RollingInterval.Day,
                             retainedFileCountLimit: 7,
-                            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] [T{ThreadId}] {Message:lj}{NewLine}{Exception}",
+                            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
                             shared: true
                         )
                         .CreateLogger();

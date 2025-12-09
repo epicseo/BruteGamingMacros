@@ -354,7 +354,6 @@
     <Compile Include="Model\Action.cs" />
     <Compile Include="Model\Macro.cs" />
     <Compile Include="Model\Profile.cs" />
-    <Compile Include="Model\Tracker.cs" />
     <Compile Include="Core\Engine\SuperiorInputEngine.cs" />
     <Compile Include="Core\Engine\SuperiorSkillSpammer.cs" />
     <Compile Include="Core\Engine\SuperiorMemoryEngine.cs" />
@@ -450,7 +449,6 @@
     <Content Include="assets\image\icon\atkdef\armor_robe.png" />
     <Content Include="assets\image\icon\atkdef\armor_shield.png" />
     <Content Include="assets\image\icon\atkdef\armor_shoes.png" />
-    <Content Include="assets\image\icon\atkdef\weapon.png" />
     <Content Include="assets\image\icon\autopot\blue_potion.png" />
     <Content Include="assets\image\icon\autopot\white_potion.png" />
     <Content Include="assets\image\icon\autopot\ygg.png" />
@@ -490,13 +488,6 @@
     <Content Include="assets\image\icon\debuff\stun.png" />
     <Content Include="assets\image\icon\debuff\weight50.png" />
     <Content Include="assets\image\icon\debuff\weight90.png" />
-    <Content Include="assets\image\icon\item\aspd\awakening_potion.gif" />
-    <Content Include="assets\image\icon\item\aspd\berserk_potion.gif" />
-    <Content Include="assets\image\icon\item\aspd\concentration_potion.gif" />
-    <Content Include="assets\image\icon\item\boxetc\abrasive.gif" />
-    <Content Include="assets\image\icon\item\boxetc\aloevera.gif" />
-    <Content Include="assets\image\icon\item\boxetc\anodyne.gif" />
-    <Content Include="assets\image\icon\item\boxetc\boxofthunder.gif" />
     <Content Include="assets\image\icon\item\boxetc\celermine.png" />
     <Content Include="assets\image\icon\item\boxetc\combat_pill.png" />
     <Content Include="assets\image\icon\item\boxetc\drowsiness.png" />
@@ -504,25 +495,18 @@
     <Content Include="assets\image\icon\item\boxetc\poison.png" />
     <Content Include="assets\image\icon\item\boxetc\resentment.png" />
     <Content Include="assets\image\icon\item\boxetc\speedpotion.png" />
-    <Content Include="assets\image\icon\item\boxetc\sunbox.gif" />
     <Content Include="assets\image\icon\item\elemental\boxofstorms.png" />
-    <Content Include="assets\image\icon\item\elemental\coldproof.gif" />
-    <Content Include="assets\image\icon\item\elemental\cursed_water.gif" />
-    <Content Include="assets\image\icon\item\elemental\earthproof.gif" />
     <Content Include="assets\image\icon\item\elemental\ele_earth_converter.png" />
     <Content Include="assets\image\icon\item\elemental\ele_fire_converter.png" />
     <Content Include="assets\image\icon\item\elemental\ele_holy_converter.png" />
     <Content Include="assets\image\icon\item\elemental\ele_water_converter.png" />
     <Content Include="assets\image\icon\item\elemental\ele_wind_converter.png" />
-    <Content Include="assets\image\icon\item\elemental\fireproof.gif" />
-    <Content Include="assets\image\icon\item\elemental\thunderproof.gif" />
     <Content Include="assets\image\icon\item\exp\fieldmanual.png" />
     <Content Include="assets\image\icon\item\exp\he_bubble_gum.png" />
     <Content Include="assets\image\icon\item\food\food_agi.png" />
     <Content Include="assets\image\icon\item\food\food_dex.png" />
     <Content Include="assets\image\icon\item\food\food_int.png" />
     <Content Include="assets\image\icon\item\food\food_luk.png" />
-    <Content Include="assets\image\icon\item\food\food_str.gif" />
     <Content Include="assets\image\icon\item\food\food_vit.png" />
     <Content Include="assets\image\icon\item\food\glass_of_illusion.png" />
     <Content Include="assets\image\icon\item\food\halohalo.png" />
@@ -532,44 +516,18 @@
     <Content Include="assets\image\icon\item\scroll\assumptio.png" />
     <Content Include="assets\image\icon\item\scroll\burnt_incense.png" />
     <Content Include="assets\image\icon\item\scroll\flee_scroll.png" />
-    <Content Include="assets\image\icon\item\scroll\scroll.gif" />
-    <Content Include="assets\image\icon\item\scroll\sl_soullinker.gif" />
-    <Content Include="assets\image\icon\skill\acolyte\al_angelus.gif" />
     <Content Include="assets\image\icon\skill\acolyte\basilica.png" />
     <Content Include="assets\image\icon\skill\acolyte\fury.png" />
     <Content Include="assets\image\icon\skill\acolyte\impositio_manus.png" />
-    <Content Include="assets\image\icon\skill\acolyte\pr_gloria.gif" />
-    <Content Include="assets\image\icon\skill\acolyte\pr_magnificat.gif" />
-    <Content Include="assets\image\icon\skill\archer\ac_concentration.gif" />
     <Content Include="assets\image\icon\skill\archer\poem_of_bragi.png" />
-    <Content Include="assets\image\icon\skill\archer\sn_sight.gif" />
-    <Content Include="assets\image\icon\skill\archer\sn_windwalk.gif" />
-    <Content Include="assets\image\icon\skill\gunslinger\adjustment.gif" />
     <Content Include="assets\image\icon\skill\gunslinger\e_chain.png" />
     <Content Include="assets\image\icon\skill\gunslinger\gatling_fever.png" />
     <Content Include="assets\image\icon\skill\gunslinger\increase_accuracy.png" />
-    <Content Include="assets\image\icon\skill\gunslinger\madnesscancel.gif" />
     <Content Include="assets\image\icon\skill\mage\amplify.png" />
-    <Content Include="assets\image\icon\skill\mage\mg_energycoat.gif" />
     <Content Include="assets\image\icon\skill\mage\mindbreaker.png" />
-    <Content Include="assets\image\icon\skill\mage\pf_doublecasting.gif" />
-    <Content Include="assets\image\icon\skill\mage\pf_memorize.gif" />
-    <Content Include="assets\image\icon\skill\mage\sa_autospell.gif" />
-    <Content Include="assets\image\icon\skill\mage\wz_sightblaster.gif" />
-    <Content Include="assets\image\icon\skill\merchant\bs_adrenaline.gif" />
-    <Content Include="assets\image\icon\skill\merchant\bs_adrenaline2.gif" />
-    <Content Include="assets\image\icon\skill\merchant\bs_maximize.gif" />
-    <Content Include="assets\image\icon\skill\merchant\bs_overthrust.gif" />
-    <Content Include="assets\image\icon\skill\merchant\bs_weaponperfect.gif" />
-    <Content Include="assets\image\icon\skill\merchant\mc_loud.gif" />
-    <Content Include="assets\image\icon\skill\merchant\ws_cartboost.gif" />
     <Content Include="assets\image\icon\skill\merchant\ws_greedparry.png" />
-    <Content Include="assets\image\icon\skill\merchant\ws_meltdown.gif" />
-    <Content Include="assets\image\icon\skill\merchant\ws_overthrustmax.gif" />
     <Content Include="assets\image\icon\skill\ninja\bunsinjyutsu.png" />
     <Content Include="assets\image\icon\skill\ninja\izayoi.png" />
-    <Content Include="assets\image\icon\skill\ninja\nj_nen.gif" />
-    <Content Include="assets\image\icon\skill\ninja\nj_utsusemi.gif" />
     <Content Include="assets\image\icon\skill\padawan\coldskin.png" />
     <Content Include="assets\image\icon\skill\padawan\forceconcentrate.png" />
     <Content Include="assets\image\icon\skill\padawan\forceelement_earth.png" />
@@ -596,23 +554,10 @@
     <Content Include="assets\image\icon\skill\padawan\jedistealth.png" />
     <Content Include="assets\image\icon\skill\padawan\saberparry.png" />
     <Content Include="assets\image\icon\skill\padawan\saberthrust.png" />
-    <Content Include="assets\image\icon\skill\swordsman\cr_autoguard.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\cr_defender.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\cr_fullprotection.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\cr_reflectshield.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\cr_shrink.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\cr_spearquicken.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\lk_aurablade.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\lk_berserk.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\lk_concentration.gif" />
     <Content Include="assets\image\icon\skill\swordsman\lk_onehand.png" />
     <Content Include="assets\image\icon\skill\swordsman\magnum.png" />
-    <Content Include="assets\image\icon\skill\swordsman\mer_quicken.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\ms_parrying.gif" />
     <Content Include="assets\image\icon\skill\swordsman\providence.png" />
     <Content Include="assets\image\icon\skill\swordsman\provoke.png" />
-    <Content Include="assets\image\icon\skill\swordsman\sm_autoberserk.gif" />
-    <Content Include="assets\image\icon\skill\swordsman\sm_endure.gif" />
     <Content Include="assets\image\icon\skill\taekwon\fusion.png" />
     <Content Include="assets\image\icon\skill\taekwon\kaahi.png" />
     <Content Include="assets\image\icon\skill\taekwon\kaite.png" />
@@ -631,13 +576,9 @@
     <Content Include="assets\image\icon\skill\taekwon\tk_mild_water.png" />
     <Content Include="assets\image\icon\skill\taekwon\tk_mild_wind.png" />
     <Content Include="assets\image\icon\skill\taekwon\tumbling.png" />
-    <Content Include="assets\image\icon\skill\thief\asc_edp.gif" />
-    <Content Include="assets\image\icon\skill\thief\as_poisonreact.gif" />
     <Content Include="assets\image\icon\skill\thief\chase_walk.png" />
     <Content Include="assets\image\icon\skill\thief\cloaking.png" />
     <Content Include="assets\image\icon\skill\thief\hiding.png" />
-    <Content Include="assets\image\icon\skill\thief\st_preserve.gif" />
-    <Content Include="assets\image\icon\skill\thief\st_rejectsword.gif" />
     <Content Include="assets\image\icon\ui\add.png" />
     <Content Include="assets\image\icon\ui\copy.png" />
     <Content Include="assets\image\icon\ui\delete.png" />
@@ -677,6 +618,12 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog">
+      <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.File">
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.AppContext">
       <Version>4.3.0</Version>

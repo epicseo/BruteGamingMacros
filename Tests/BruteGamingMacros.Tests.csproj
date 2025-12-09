@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net481</TargetFramework>
     <IsPackable>false</IsPackable>
     <RootNamespace>BruteGamingMacros.Tests</RootNamespace>
     <AssemblyName>BruteGamingMacros.Tests</AssemblyName>
@@ -22,8 +22,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
+  <!-- Reference the built main project assembly instead of ProjectReference -->
+  <!-- This avoids SDK/non-SDK project compatibility issues -->
   <ItemGroup>
-    <ProjectReference Include="..\BruteGamingMacros.csproj" />
+    <Reference Include="BruteGamingMacros">
+      <HintPath>..\bin\Release\BruteGamingMacros.exe</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

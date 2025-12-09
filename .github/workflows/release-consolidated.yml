@@ -81,7 +81,7 @@ jobs:
           Write-Error "Main Release build failed - executable not found!"
           exit 1
         }
-        Write-Host "✓ Main Release build succeeded" -ForegroundColor Green
+        Write-Host "[OK] Main Release build succeeded" -ForegroundColor Green
 
     - name: Install NSIS
       shell: powershell
@@ -100,7 +100,7 @@ jobs:
           & "C:\Program Files (x86)\NSIS\makensis.exe" /DVERSION="$version" installer\installer.nsi
 
           if ($LASTEXITCODE -eq 0) {
-            Write-Host "✓ Installer built successfully" -ForegroundColor Green
+            Write-Host "[OK] Installer built successfully" -ForegroundColor Green
           } else {
             Write-Warning "NSIS build returned exit code: $LASTEXITCODE"
           }
@@ -172,7 +172,7 @@ jobs:
           Compress-Archive -Path "$tempDir\*" -DestinationPath $zipName -Force
           Remove-Item $tempDir -Recurse -Force
 
-          Write-Host "✓ Created: $zipName" -ForegroundColor Green
+          Write-Host "[OK] Created: $zipName" -ForegroundColor Green
         }
 
         # Create portable packages for each successful build
@@ -327,26 +327,26 @@ jobs:
         if ($zipCount -gt 0) {
           Get-ChildItem "*.zip" | ForEach-Object {
             $size = [math]::Round($_.Length / 1MB, 2)
-            Write-Host "  ✓ $($_.Name) ($size MB)" -ForegroundColor Green
+            Write-Host "  [OK] $($_.Name) ($size MB)" -ForegroundColor Green
           }
         } else {
-          Write-Host "  ⚠ No portable packages created" -ForegroundColor Yellow
+          Write-Host "  [WARNING] No portable packages created" -ForegroundColor Yellow
         }
 
         if ($installerExists) {
           Get-ChildItem "installer\*.exe" | ForEach-Object {
             $size = [math]::Round($_.Length / 1MB, 2)
-            Write-Host "  ✓ $($_.Name) ($size MB)" -ForegroundColor Green
+            Write-Host "  [OK] $($_.Name) ($size MB)" -ForegroundColor Green
           }
         } else {
-          Write-Host "  ⚠ No installer created" -ForegroundColor Yellow
+          Write-Host "  [WARNING] No installer created" -ForegroundColor Yellow
         }
 
-        Write-Host "  ✓ checksums.txt" -ForegroundColor Green
-        Write-Host "  ✓ release-notes.md" -ForegroundColor Green
+        Write-Host "  [OK] checksums.txt" -ForegroundColor Green
+        Write-Host "  [OK] release-notes.md" -ForegroundColor Green
         Write-Host ""
         Write-Host "=" * 70 -ForegroundColor Cyan
-        Write-Host "✓ BUILD COMPLETED SUCCESSFULLY!" -ForegroundColor Green
+        Write-Host "[OK] BUILD COMPLETED SUCCESSFULLY!" -ForegroundColor Green
         Write-Host "=" * 70 -ForegroundColor Cyan
         Write-Host ""
 

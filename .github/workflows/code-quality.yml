@@ -52,7 +52,7 @@ jobs:
             # exit 1
           }
         } else {
-          Write-Host "✓ No compiler warnings found" -ForegroundColor Green
+          Write-Host "[OK] No compiler warnings found" -ForegroundColor Green
         }
 
     - name: Code analysis summary
@@ -76,10 +76,10 @@ jobs:
 
         Write-Host ""
         Write-Host "Build configurations tested:" -ForegroundColor Yellow
-        Write-Host "  ✓ Debug" -ForegroundColor Green
-        Write-Host "  ✓ Release" -ForegroundColor Green
+        Write-Host "  [OK] Debug" -ForegroundColor Green
+        Write-Host "  [OK] Release" -ForegroundColor Green
         Write-Host ""
-        Write-Host "✓ Code quality check completed" -ForegroundColor Green
+        Write-Host "[OK] Code quality check completed" -ForegroundColor Green
 
   security-scan:
     runs-on: windows-latest
@@ -123,7 +123,7 @@ jobs:
         }
 
         if ($findings.Count -gt 0) {
-          Write-Host "⚠ Potential sensitive data found:" -ForegroundColor Red
+          Write-Host "[WARNING] Potential sensitive data found:" -ForegroundColor Red
           foreach ($finding in $findings) {
             Write-Host "  [$($finding.Type)] $($finding.File):$($finding.Line)" -ForegroundColor Yellow
             Write-Host "    $($finding.Text)" -ForegroundColor Gray
@@ -132,7 +132,7 @@ jobs:
           Write-Warning "Found $($findings.Count) potential sensitive data patterns. Please review."
           # Don't fail - these may be false positives
         } else {
-          Write-Host "✓ No obvious sensitive data patterns found" -ForegroundColor Green
+          Write-Host "[OK] No obvious sensitive data patterns found" -ForegroundColor Green
         }
 
     - name: Check dependencies for known vulnerabilities
@@ -169,14 +169,14 @@ jobs:
 
           if ($vulnerabilities.Count -gt 0) {
             Write-Host ""
-            Write-Host "⚠ Potentially vulnerable packages found:" -ForegroundColor Red
+            Write-Host "[WARNING] Potentially vulnerable packages found:" -ForegroundColor Red
             foreach ($vuln in $vulnerabilities) {
               Write-Host "  - $vuln" -ForegroundColor Yellow
             }
             Write-Warning "Please update vulnerable packages"
           } else {
             Write-Host ""
-            Write-Host "✓ No known vulnerable packages detected" -ForegroundColor Green
+            Write-Host "[OK] No known vulnerable packages detected" -ForegroundColor Green
           }
         }
 
@@ -187,8 +187,8 @@ jobs:
         Write-Host "======================================" -ForegroundColor Cyan
         Write-Host "Security Scan Summary" -ForegroundColor Cyan
         Write-Host "======================================" -ForegroundColor Cyan
-        Write-Host "✓ Sensitive data scan completed" -ForegroundColor Green
-        Write-Host "✓ Dependency vulnerability check completed" -ForegroundColor Green
+        Write-Host "[OK] Sensitive data scan completed" -ForegroundColor Green
+        Write-Host "[OK] Dependency vulnerability check completed" -ForegroundColor Green
         Write-Host ""
         Write-Host "Note: This is a basic security scan. For comprehensive" -ForegroundColor Gray
         Write-Host "security analysis, use dedicated tools like:" -ForegroundColor Gray
